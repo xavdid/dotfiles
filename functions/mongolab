@@ -1,0 +1,15 @@
+#! /bin/zsh
+
+function mongolab()
+{
+    if [[ -e '.env' ]]; then
+        URI=$("$DOTFILES"/util/mongolab.rb "$1")
+        if ! [ -z "$URI" ]; then
+            eval mongo "$URI"
+        else
+            echo 'No MONGOLAB key in .env'
+        fi
+    else
+        echo 'No .env found'
+    fi
+}
