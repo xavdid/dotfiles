@@ -6,59 +6,66 @@ tap 'caskroom/cask'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
-tap 'vitorgalvao/tiny-scripts'
 
-# brews
+# utils
 brew 'autojump'
 brew 'coreutils'
-brew 'git'
-brew 'hr'
-brew 'hub'
-brew 'jq'
-brew 'libav' # for pulling audio out of videos
 brew 'mas'
-brew 'mongodb'
-brew 'openssl'
-brew 'redis'
-brew 'shellcheck'
-brew 'tvnamer'
 brew 'wifi-password'
-brew 'youtube-dl'
-brew 'zsh'
-brew 'zsh-completions'
-brew 'zsh-syntax-highlighting'
-
-brew 'vitorgalvao/tiny-scripts/cask-repair'
-
-# programming languages
-# brew 'go'
-# brew 'node' # installed with nvm
-# brew 'python3'
-
-# casks
-cask '1password'
 cask 'a-better-finder-rename'
 cask 'adapter'
 cask 'alfred'
-cask 'airtable'
 cask 'bartender'
+cask 'bettertouchtool'
 cask 'duet'
-cask 'dropbox'
-# cask 'fluid'
 cask 'flux'
-cask 'font-inconsolata'
-cask 'google-chrome'
-cask 'google-drive'
 cask 'hazel'
+cask 'hyperswitch'
 cask 'keepingyouawake'
 cask 'keka'
+mas 'PiPifier', id: 1160374471
+
+# scripts
+tap 'vitorgalvao/tiny-scripts'
+brew 'vitorgalvao/tiny-scripts/cask-repair'
+
+# apps!
+cask '1password'
+cask 'airtable'
+cask 'dropbox'
+cask 'google-chrome'
+cask 'google-drive'
 cask 'keybase'
 cask 'musicbrainz-picard'
 cask 'numi'
 cask 'rocket'
 cask 'spectacle'
 cask 'typora'
-cask 'transmission'
+mas '2Do', id: 477670270
+mas 'Airmail 3', id: 918858936
+mas 'Parcel', id: 639968404
+mas 'Pocket', id: 568494494
+mas 'Tweetbot', id: 557168941
+
+# programming
+# brew 'redis'
+# mas 'Xcode', id: 497799835
+brew 'git'
+brew 'hub'
+brew 'jq'
+brew 'mongodb'
+brew 'openssl'
+brew 'zsh'
+brew 'zsh-completions'
+brew 'zsh-syntax-highlighting'
+cask 'iterm2'
+cask 'ngrok'
+cask 'postman'
+cask 'visual-studio-code'
+
+# programming languages
+# brew 'go'
+# brew 'python3'
 
 # work
 cask 'docker'
@@ -66,28 +73,21 @@ cask 'slack'
 cask 'virtualbox'
 cask 'viscosity'
 
-# programming
-cask 'iterm2'
-cask 'ngrok'
-cask 'postman'
-# cask 'sublime-text3'
-cask 'visual-studio-code'
-
 # media
+brew 'libav' # for pulling audio out of videos
+brew 'tvnamer'
+brew 'youtube-dl'
+cask 'simple-comic'
 cask 'spotify'
-cask 'techstoreclub-simple-comic'
+cask 'transmission'
 cask 'vlc'
+
+# fonts
+tap 'caskroom/fonts'
+cask 'font-inconsolata'
 
 # gaming
 cask 'battle-net'
 cask 'openemu'
 cask 'steam'
 
-mas '2Do', id: 477670270
-mas 'Airmail 3', id: 918858936
-mas 'Parcel', id: 639968404
-mas 'PiPifier', id: 1160374471
-mas 'Pocket', id: 568494494
-mas 'Tweetbot', id: 557168941
-# mas 'Wunderlist', id: 410628904
-# mas 'Xcode', id: 497799835

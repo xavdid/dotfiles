@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
 # Run all dotfiles installers.
+# needs to be run from dotfile root
 
 set -e
 
@@ -8,7 +9,7 @@ cd "$(dirname $0)"/..
 
 # Run Homebrew through the Brewfile
 echo "› brew bundle"
-brew bundle
+brew bundle --file="homebrew/Brewfile"
 
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
