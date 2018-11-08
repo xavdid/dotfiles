@@ -18,12 +18,12 @@ brew 'hub'
 brew 'jq'
 brew 'libav' # for pulling audio out of videos
 brew 'mas'
-brew 'mongodb'
+# brew 'mongodb'
 brew 'openssl'
-brew 'redis'
-brew 'shellcheck'
+# brew 'redis'
+# brew 'shellcheck'
 brew 'tvnamer'
-brew 'wifi-password'
+# brew 'wifi-password'
 brew 'youtube-dl'
 brew 'zsh'
 brew 'zsh-completions'
@@ -37,62 +37,62 @@ brew 'vitorgalvao/tiny-scripts/cask-repair'
 # brew 'python3'
 
 # casks
-cask '1password'
+# cask '1password'
 cask 'a-better-finder-rename'
 cask 'adapter'
 cask 'alfred'
-cask 'airtable'
+# cask 'airtable'
 cask 'bartender'
-cask 'duet'
+# cask 'duet'
 cask 'dropbox'
 # cask 'fluid'
 cask 'flux'
-cask 'font-inconsolata'
-cask 'google-chrome'
-cask 'google-drive'
+# cask 'font-inconsolata'
+# cask 'google-chrome'
+# cask 'google-drive'
 cask 'hazel'
 cask 'hyperswitch'
 cask 'keepingyouawake'
 cask 'keka'
-cask 'keybase'
-cask 'musicbrainz-picard'
-cask 'numi'
-cask 'rocket'
-cask 'spectacle'
-cask 'typora'
+# cask 'keybase'
+# cask 'musicbrainz-picard'
+# cask 'numi'
+# cask 'rocket'
+# cask 'spectacle'
+# cask 'typora'
 cask 'transmission'
 
 # work
-cask 'docker'
-cask 'slack'
-cask 'virtualbox'
-cask 'viscosity'
+# cask 'docker'
+# cask 'slack'
+# cask 'virtualbox'
+# cask 'viscosity'
 
 # programming
 cask 'iterm2'
-cask 'ngrok'
-cask 'postman'
+# cask 'ngrok'
+# cask 'postman'
 # cask 'sublime-text3'
-cask 'visual-studio-code'
-brew 'heroku/brew/heroku'
+# cask 'visual-studio-code'
+# brew 'heroku/brew/heroku'
 
 
 # media
-cask 'spotify'
-cask 'techstoreclub-simple-comic'
+# cask 'spotify'
+# cask 'techstoreclub-simple-comic'
 cask 'vlc'
 
 # gaming
-cask 'battle-net'
-cask 'discord'
-cask 'openemu'
-cask 'steam'
+# cask 'battle-net'
+# cask 'discord'
+# cask 'openemu'
+# cask 'steam'
 
 # mas '2Do', id: 477670270
 # mas 'Airmail 3', id: 918858936
-mas 'Parcel', id: 639968404
-mas 'PiPifier', id: 1160374471
-mas 'Pocket', id: 568494494
-mas 'Tweetbot', id: 557168941
+# mas 'Parcel', id: 639968404
+# mas 'PiPifier', id: 1160374471
+# mas 'Pocket', id: 568494494
+# mas 'Tweetbot', id: 557168941
 # mas 'Wunderlist', id: 410628904
 # mas 'Xcode', id: 497799835
