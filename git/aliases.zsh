@@ -1,23 +1,60 @@
 # Use `hub` as our git wrapper:
-#   http://defunkt.github.com/hub/
-hub_path=$(which hub)
-if (( $+commands[hub] ))
-then
-  alias git=$hub_path
-fi
+#   https://github.com/github/hub
 
-# The rest of my fun git aliases
-alias gl='git pull --prune'
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias gp='git push origin HEAD'
+# this outputs "alias git=hub"
+eval "$(hub alias -s)"
 
-# Remove `+` and `-` from start of diff lines; just rely upon color.
-alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r'
+# alias g="git"
+alias purr="git pull --rebase"
+alias gs="git status"
+alias gp="git push"
+alias gd="git diff"
+alias gt="git log --graph --oneline --decorate"
+alias gb="git branch"
+alias gm="git merge"
+alias gc="git commit"
 
-alias gc='git commit'
-alias gca='git commit -a'
-alias gco='git checkout'
-alias gcb='git copy-branch-name'
-alias gb='git branch'
-alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
-alias gac='git add -A && git commit -m'
+alias ch="git checkout"
+
+function ggg() { git add --all .; git commit -m "$1"; }
+function gug() { git add -u .; git commit -m "$1"; }
+
+# stolen from Nick Quinlan
+alias pushit="open -g spotify:track:0GugYsbXWlfLOgsmtsdxzg; git push"
+
+# push new branch - usage: `pnb $BRANCH`
+alias pnb="git push -u origin"
+
+alias disc="git reset --hard"
+
+# usage: chb new-branch
+function chb() {
+    git checkout -b "$1"
+    git push -u origin "$1"
+}
+
+# push and set upstream branch
+# this doesn't work with my config?
+# function gpu() {
+#     BRANCH=$(git rev-parse --abbrev-ref HEAD)
+#     echo $BRANCH
+#     git push -u origin "$BRANCH"
+# }
+
+# update remote to match new username
+# function rem() {
+#     [[ $(git remote get-url origin) =~ /(.*)\.git$ ]] &&
+#     # this breaks if we pay attention to shellcheck
+#     git remote set-url origin "git@github.com:xavdid/$match[1].git"
+# }
+
+# adapted from http://www.reddit.com/2e513y
+function gi()
+{
+    VAL=$(curl https://www.gitignore.io/api/"$*")
+    if [ "$1" = 'list' ];then
+        echo "$VAL"
+    else
+        echo "$VAL" > .gitignore
+    fi
+}

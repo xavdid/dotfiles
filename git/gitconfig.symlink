@@ -1,24 +1,43 @@
-# Local/private config goes in the include
-[include]
-        path = ~/.gitconfig.local
-
-[alias]
-        wtf = !$ZSH/bin/git-wtf
-[color]
-        branch = auto
-        diff = auto
-        interactive = auto
-        pager = true
-        status = auto
-        ui = true
+[user]
+	name = David Brownman
+	email = beamneocube@gmail.com
+	username = xavdid
 [core]
-        excludesfile = ~/.gitignore
-        editor = vim
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[merge]
+	tool = vimdiff
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+
+
+[color "branch"]
+	current = white
+	local = white
+	remote = green
+
+[color "diff"]
+	meta = magenta reverse
+	frag = magenta
+	old = red
+	new = green
+
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[branch]
+	autosetuprebase = always
 [help]
         autocorrect = 1
-[push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
-        default = simple

@@ -1,0 +1,7 @@
+{
+  "overwrite_destination_on_move": true,
+  "overwrite_destination_on_rename": true,
+  "output_series_replacements": {},
+  "filename_with_episode": "%(seriesname)s[%(seasonnumber)02dx%(episode)s]%(ext)s",
+  "input_series_replacements": {}
+}

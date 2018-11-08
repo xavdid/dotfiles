@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
-#
-# used by the mongolab function to extract/build a string to be evaulated by mongo
-#
+
+# reads the current directory for a .env file with the key MONGOLAB_URI and parses it into what can be passed as an argument into the mongo CLI tool
 
 def mongoize(uri)
   re = uri.match(/db:\/\/(\w*):(\w*)@(.*)$/)
@@ -16,7 +15,7 @@ def mongoize(uri)
 end
 
 begin
-  f = File.open('.env')
+  f = File.open('./.env')
 rescue
   exit 1
 end
