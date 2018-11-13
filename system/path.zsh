@@ -1,34 +1,25 @@
-export PATH="./bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$DOTFILES/bin:$PATH"
 
-function home()
-{
-    export DROPBOX=/Users/david/Dropbox
-    export DOTFILES=$DROPBOX/Saves/dotfiles
-    export PROJECTS_ROOT=$HOME/projects
+export DROPBOX="$HOME/Dropbox"
 
-    function mag() {
-        # echo 'not right now'
-        pbpaste > "$DROPBOX/To Plex/thing-$(date -u +"%Ss").magnet"
-    }
+if [[ $LOC = 'RIQ' ]]; then
 
-    alias db="cd \$DROPBOX"
+    export PROJECTS_ROOT="$HOME/projects"
+    export $GITHUB_CLONE_NAME="xavdid"
 
-    ## CUSTOM GIT ##
-    function clo() { git clone git@github.com:xavdid/"$1".git; }
-}
+    export PATH="$PATH:$DROPBOX/Saves/bin"
 
-function work()
-{
-    export DROPBOX=/Users/david/Dropbox
-    export DOTFILES=$DROPBOX/Saves/dotfiles
-    export PROJECTS_ROOT=$HOME/projects
+elif [[ $LOC = 'TBP' ]]; then
 
-    ## CUSTOM GIT ##
-    function clo() { git clone git@github.com:zapier/"$1".git; }
-}
+    export PROJECTS_ROOT="$HOME/projects"
+    export $GITHUB_CLONE_NAME="zapier"
 
-if [[ $LOC = RIQ ]]; then
-    work
-elif [[ $LOC = TBP ]]; then
-    home
+elif [[ $LOC = 'TOR' ]]; then
+
+else
+    echo 'No LOC file found'
+fi
+
+if ![[ -z "$DROPBOX" ]]; then
+    echo '!!warning!! $DROPBOX is not set'
 fi

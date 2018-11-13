@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+
+const requireGlobal = m => {
+  const HOME = require('os').homedir()
+  const { join } = require('path')
+  // `yarn global dir` returns /Users/david/.config/yarn/global
+
+  try {
+    return require(join(HOME, '/.config/yarn/global/node_modules/', m))
+  } catch (e) {
+    console.error(
+      `unable to find "${m}", install it globally:\n\n\tyarn global add ${m}\n`
+    )
+    process.exit(1)
+  }
+}
+
+const program = requireGlobal('commander')
+const got = requireGlobal('got')
+const Table = requireGlobal('cli-table')
+const fs = require('fs')
+const chalk = requireGlobal('chalk')
+const path = require('path')
+
+const credLocation = path.join(process.env.DROPBOX, '/Apps/.creds/tmdb.txt')
+
+program
+  .version('1.0.0')
+  .usage('<NAME>')
+  .option('-m --more', 'see more results')
+  // broken in the table because the description is so long
+  // .option('-d --details', 'print media description(s)')
+  .parse(process.argv)
+
+if (!program.args.length) {
+  console.error('must supply a name to search for')
+  console.log(program.usage())
+  process.exit(1)
+}
+
+const searchQuery = program.args.join(' ')
+got('https://api.themoviedb.org/3/search/multi', {
+  json: true,
+  query: {
+    api_key: fs.readFileSync(credLocation, 'utf-8'),
+    query: searchQuery
+  }
+})
+  .then(resp => {
+    const items = resp.body.results
+    if (!items.length) {
+      console.error(`no results found for "${searchQuery}"`)
+      process.exit(0)
+    }
+
+    const num = program.more ? 3 : 1
+    let tableHeader = ['ID', 'Title', 'Media Type', 'Year']
+    if (program.details) {
+      tableHeader.push('Description')
+    }
+    const t = new Table({ head: tableHeader })
+    for (const item of items.slice(0, num)) {
+      let info = [
+        chalk.bold.cyan(item.id),
+        item.name || item.title, // tv and movies have different keys
+        item.media_type,
+        (item.first_air_date || item.release_date).slice(0, 4)
+      ]
+      if (program.details) {
+        info.push(item.overview)
+      }
+      t.push(info)
+    }
+    console.log(t.toString())
+  })
+  .catch(err => console.error(`error from TMDb: ${err}`))

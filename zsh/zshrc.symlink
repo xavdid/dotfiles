@@ -1,11 +1,6 @@
 #! /bin/zsh
 
-# shellcheck source=/dev/null
 source ~/.loc
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-export ZSH_THEME="kolo"
 
 export ZSH=~/.oh-my-zsh
 export DOTFILES=~/.dotfiles
@@ -13,6 +8,9 @@ export DOTFILES=~/.dotfiles
 typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
 
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+export ZSH_THEME="kolo"
 source $ZSH/oh-my-zsh.sh
 
 # load the path files
@@ -59,7 +57,6 @@ alias sr="$EDITOR $DROPBOX/Saves/Alfred.alfredpreferences/workflows/user.workflo
 #         echo 'No .env found'
 #     fi
 # }
-
 
 # add custom completion scripts
 fpath=(~/.zsh/completion $fpath)

@@ -59,8 +59,13 @@ cask 'keka'
 # cask 'numi'
 # cask 'rocket'
 # cask 'spectacle'
+# cask 'scroll-reverser'
 # cask 'typora'
+# cask 'catch'
 cask 'transmission'
+cask 'plex-media-server'
+# cask 'screens'
+# cask 'screens-connect'
 
 # work
 # cask 'docker'
