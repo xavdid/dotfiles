@@ -4,4 +4,4 @@
 #
 # usage: clo my-repo [this/path]
 
-git clone "git@github.com:$GITHUB_CLONE_NAME/$1.git" "$2"
+git clone "git@github.com:$GITHUB_CLONE_NAME/$1.git" $2

@@ -39,7 +39,11 @@ done
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
 
 # blogging
-alias fact="open https://en.wikipedia.org/wiki/$(date +%B_%m)"
+# needs to be a function so it evaluates at runtime, not at source time
+function fact()
+{
+  open "https://en.wikipedia.org/wiki/$(date +%B_%d)"
+}
 
 # subredit quick search
 alias sr="$EDITOR $DROPBOX/Saves/Alfred.alfredpreferences/workflows/user.workflow.6033913B-9820-4476-A13D-5D2845147D11/subreddits.py"

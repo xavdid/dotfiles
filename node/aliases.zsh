@@ -59,7 +59,10 @@ export NVM_DIR="/Users/david/.nvm"
 # alias nvmwrite="nvm alias default $(nvm current) && $(nvm version default) > ~/.nvm_default"
 
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# see: https://github.com/creationix/nvm/issues/110#issuecomment-190125863
+
+## this runs nvm on directory change, but it's too slow
+## see: https://github.com/creationix/nvm/issues/110#issuecomment-190125863
+
 # autoload -U add-zsh-hook
 # load-nvmrc() {
 #     if [[ -f .nvmrc && -r .nvmrc ]]; then

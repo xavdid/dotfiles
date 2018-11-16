@@ -39,5 +39,3 @@
 	smudge = git-lfs smudge -- %f
 [branch]
 	autosetuprebase = always
-[help]
-        autocorrect = 1
