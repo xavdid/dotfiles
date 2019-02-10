@@ -19,16 +19,13 @@ const requireGlobal = m => {
 
 const epub = requireGlobal('epub-wordcount')
 const got = requireGlobal('got')
-const path = require('path')
+const config = requireGlobal('@brownman/config')
 
-const url = require(path.join(
-  process.env.DROPBOX,
-  '/Apps/Workflow/zap_urls.json'
-)).book
+const url = config.readZapUrl('book')
 
 const bookPath = process.argv[2]
 // we know this'll pass because this script only runs once hazel has matched an id
-const gbid = bookPath.match(/\(gbid\|(.*)\)/)[1]
+const gbid = bookPath.match(/gbid\|(.*)\.epub/)[1]
 
 epub
   .countWords(bookPath)

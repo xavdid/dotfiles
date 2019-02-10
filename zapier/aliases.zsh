@@ -11,7 +11,10 @@ function finn() {
     # DTE is still set from before
     UPDATE_PATH="/Users/david/Dropbox/Apps/Editorial/Zapier"
     mv "$UPDATE_PATH/$DTE.md" "$UPDATE_PATH/friday/$DTE.md"
-    echo "Done! Slack message soon"
+    if [ $? -eq 0 ]; then
+        echo "Done! Slack message soon"
+    fi
+
 }
 
 alias bastion="ssh davidbrownman@bastion.zapier.com"

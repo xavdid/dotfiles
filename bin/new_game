@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+
+const requireGlobal = m => {
+  const HOME = require('os').homedir()
+  const { join } = require('path')
+  // `yarn global dir` returns /Users/david/.config/yarn/global
+  try {
+    return require(join(HOME, '.config/yarn/global/node_modules/', m))
+  } catch (e) {
+    console.error(
+      `unable to find "${m}", install it globally:\n\n\tyarn global add ${m}\n`
+    )
+    process.exit(1)
+  }
+}
+
+const got = requireGlobal('got')
+const config = requireGlobal('@brownman/config')
+const inquirer = requireGlobal('inquirer')
+
+const searchGames = async () => {
+  const { name } = await inquirer.prompt([
+    { message: 'What game is it?', name: 'name' }
+  ])
+  const res = await got(`https://api-v3.igdb.com/games`, {
+    headers: { 'user-key': config.readToken('igdb') },
+    method: 'POST',
+    body: `search "${name}"; fields name, slug, first_release_date;`
+  })
+  const games = JSON.parse(res.body)
+  if (!games.length) {
+    console.log('no games found, try again\n')
+  }
+  return games
+}
+
+const releaseYear = maybeDate =>
+  maybeDate ? new Date(maybeDate * 1000).toISOString().substr(0, 4) : 'Unknown'
+
+const main = async () => {
+  let games = []
+
+  while (!games.length) {
+    games = await searchGames()
+  }
+
+  const info = await inquirer.prompt([
+    {
+      type: 'list',
+      message: 'Which one, specifically?',
+      name: 'slug',
+      choices: games.map(({ name, slug, first_release_date }) => ({
+        name: `${name} (${releaseYear(first_release_date)})`,
+        value: slug
+      }))
+    },
+    {
+      type: 'list',
+      message: 'What platform?',
+      name: 'platforms',
+      choices: ['Twitch', 'PS4', 'Epic', 'iOS', '3DS', 'Humble', 'GOG']
+    },
+    {
+      type: 'confirm',
+      message: 'Is this PS+?',
+      name: 'ps_plus',
+      when: answers => answers.platform === 'PS4'
+    },
+    {
+      type: 'list',
+      message: 'What is your interest level?',
+      name: 'interest_level',
+      choices: ['4', '3', '2', '1'],
+      filter: i => parseInt(i, 10)
+    }
+  ])
+
+  await got(config.readZapUrl('game'), { json: true, body: info })
+}
+
+main().catch(e => console.error('there was a problem:', e))

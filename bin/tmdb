@@ -18,11 +18,8 @@ const requireGlobal = m => {
 const program = requireGlobal('commander')
 const got = requireGlobal('got')
 const Table = requireGlobal('cli-table')
-const fs = require('fs')
 const chalk = requireGlobal('chalk')
-const path = require('path')
-
-const credLocation = path.join(process.env.DROPBOX, '/Apps/.creds/tmdb.txt')
+const config = requireGlobal('@brownman/config')
 
 program
   .version('1.0.0')
@@ -42,7 +39,7 @@ const searchQuery = program.args.join(' ')
 got('https://api.themoviedb.org/3/search/multi', {
   json: true,
   query: {
-    api_key: fs.readFileSync(credLocation, 'utf-8'),
+    api_key: config.readToken('tmdb'),
     query: searchQuery
   }
 })
