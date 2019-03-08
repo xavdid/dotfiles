@@ -44,6 +44,14 @@ const main = async () => {
     games = await searchGames()
   }
 
+  if (games.length === 1) {
+    console.log(
+      `\nFound: ${games[0].name} (${releaseYear(
+        games[0].first_release_date
+      )})\n`
+    )
+  }
+
   const info = await inquirer.prompt([
     {
       type: 'list',
@@ -52,7 +60,8 @@ const main = async () => {
       choices: games.map(({ name, slug, first_release_date }) => ({
         name: `${name} (${releaseYear(first_release_date)})`,
         value: slug
-      }))
+      })),
+      when: () => games.length > 1
     },
     {
       type: 'list',
@@ -64,7 +73,7 @@ const main = async () => {
       type: 'confirm',
       message: 'Is this PS+?',
       name: 'ps_plus',
-      when: answers => answers.platform === 'PS4'
+      when: answers => answers.platforms === 'PS4'
     },
     {
       type: 'list',
@@ -75,7 +84,13 @@ const main = async () => {
     }
   ])
 
+  if (!info.slug) {
+    // we didn't ask because there's only 1 option
+    info.slug = games[0].slug
+  }
+
   await got(config.readZapUrl('game'), { json: true, body: info })
+  console.log('Success! Added', games.find(g => g.slug === info.slug).name)
 }
 
 main().catch(e => console.error('there was a problem:', e))
