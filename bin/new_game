@@ -79,8 +79,8 @@ const main = async () => {
       type: 'list',
       message: 'What is your interest level?',
       name: 'interest_level',
-      choices: ['4', '3', '2', '1'],
-      filter: i => parseInt(i, 10)
+      choices: ['4', '3', '2', '1', 'N/A'],
+      filter: i => (i === 'N/A' ? undefined : parseInt(i, 10))
     }
   ])
 

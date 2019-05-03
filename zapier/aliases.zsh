@@ -14,7 +14,6 @@ function finn() {
     if [ $? -eq 0 ]; then
         echo "Done! Slack message soon"
     fi
-
 }
 
 alias bastion="ssh davidbrownman@bastion.zapier.com"
@@ -23,3 +22,6 @@ alias rebastion="ssh-keygen -R bastion.zapier.com"
 alias zcliprod="cp ~/.zapierrc.prod ~/.zapierrc && export export ZAPIER_BASE_ENDPOINT=''"
 alias zclipers="cp ~/.zapierrc.personal ~/.zapierrc && export export ZAPIER_BASE_ENDPOINT=''"
 alias zclilocal="cp ~/.zapierrc.local ~/.zapierrc && export ZAPIER_BASE_ENDPOINT='http://localhost:8000'"
+
+# django
+alias djm="docker-compose run web python backend/manage.py"
