@@ -4,6 +4,7 @@ const requireGlobal = m => {
   const HOME = require('os').homedir()
   const { join } = require('path')
   // `yarn global dir` returns /Users/david/.config/yarn/global
+
   try {
     return require(join(HOME, '.config/yarn/global/node_modules/', m))
   } catch (e) {
@@ -67,7 +68,16 @@ const main = async () => {
       type: 'list',
       message: 'What platform?',
       name: 'platforms',
-      choices: ['Twitch', 'PS4', 'Epic', 'iOS', '3DS', 'Humble', 'GOG']
+      choices: [
+        'Twitch',
+        'PS4',
+        'Epic',
+        'iOS',
+        'Switch',
+        '3DS',
+        'Humble',
+        'GOG'
+      ]
     },
     {
       type: 'confirm',
