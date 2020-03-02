@@ -1,48 +1,70 @@
 #!/usr/bin/env node
 
 const requireGlobal = m => {
-  const HOME = require('os').homedir()
-  const { join } = require('path')
+  const HOME = require("os").homedir();
+  const { join } = require("path");
   // `yarn global dir` returns /Users/david/.config/yarn/global
 
   try {
-    return require(join(HOME, '.config/yarn/global/node_modules/', m))
+    return require(join(HOME, ".config/yarn/global/node_modules/", m));
   } catch (e) {
     console.error(
       `unable to find "${m}", install it globally:\n\n\tyarn global add ${m}\n`
-    )
-    process.exit(1)
+    );
+    process.exit(1);
   }
-}
+};
 
-const got = requireGlobal('got')
-const config = requireGlobal('@brownman/config')
-const inquirer = requireGlobal('inquirer')
+const got = requireGlobal("got");
+const config = requireGlobal("@brownman/config");
+const inquirer = requireGlobal("inquirer");
+
+/////////////////////////////////////////////////////
 
 const searchGames = async () => {
   const { name } = await inquirer.prompt([
-    { message: 'What game is it?', name: 'name' }
-  ])
+    { message: "What game is it?", name: "name" }
+  ]);
   const res = await got(`https://api-v3.igdb.com/games`, {
-    headers: { 'user-key': config.readToken('igdb') },
-    method: 'POST',
+    headers: { "user-key": config.readToken("igdb") },
+    method: "POST",
     body: `search "${name}"; fields name, slug, first_release_date;`
-  })
-  const games = JSON.parse(res.body)
+  });
+  const games = JSON.parse(res.body);
   if (!games.length) {
-    console.log('no games found, try again\n')
+    console.log("no games found, try again\n");
   }
-  return games
-}
+  return games;
+};
 
 const releaseYear = maybeDate =>
-  maybeDate ? new Date(maybeDate * 1000).toISOString().substr(0, 4) : 'Unknown'
+  maybeDate ? new Date(maybeDate * 1000).toISOString().substr(0, 4) : "Unknown";
+
+// don't need steam, that's handled automatically
+const platforms = {
+  epic: { value: "Epic", group: "pc" },
+  twitch: { value: "Twitch", group: "pc" },
+  ps4: { value: "PS4", group: "console" },
+  switch: { value: "Switch", group: "console" },
+  ios: { value: "iOS", group: "mobile" },
+  humble: { value: "Humble", group: "pc" },
+  gog: { value: "GOG", group: "pc" }
+};
+const groupedPlatforms = Object.values(platforms).reduce(
+  (res, { value, group }) => ({
+    ...res,
+    [group]: [...(res[group] || []), value]
+  }),
+  {}
+);
+
+const showNA = pred => (pred ? "n/a" : false);
 
 const main = async () => {
-  let games = []
+  let games = [{ name: "cool", slug: "slug" }];
 
   while (!games.length) {
-    games = await searchGames()
+    games = await searchGames();
   }
 
   if (games.length === 1) {
@@ -50,14 +72,14 @@ const main = async () => {
       `\nFound: ${games[0].name} (${releaseYear(
         games[0].first_release_date
       )})\n`
-    )
+    );
   }
 
   const info = await inquirer.prompt([
     {
-      type: 'list',
-      message: 'Which one, specifically?',
-      name: 'slug',
+      type: "list",
+      message: "Which one, specifically?",
+      name: "slug",
       choices: games.map(({ name, slug, first_release_date }) => ({
         name: `${name} (${releaseYear(first_release_date)})`,
         value: slug
@@ -65,42 +87,48 @@ const main = async () => {
       when: () => games.length > 1
     },
     {
-      type: 'list',
-      message: 'What platform?',
-      name: 'platforms',
-      choices: [
-        'Twitch',
-        'PS4',
-        'Epic',
-        'iOS',
-        'Switch',
-        '3DS',
-        'Humble',
-        'GOG'
-      ]
+      type: "list",
+      message: "What platform?",
+      name: "platform",
+      choices: Object.values(platforms).map(x => x.value)
     },
     {
-      type: 'confirm',
-      message: 'Is this PS+?',
-      name: 'ps_plus',
-      when: answers => answers.platforms === 'PS4'
+      type: "confirm",
+      message: "Is this part of PS+?",
+      name: "plus",
+      when: answers => answers.platform === platforms.ps4.value
     },
     {
-      type: 'list',
-      message: 'What is your interest level?',
-      name: 'interest_level',
-      choices: ['4', '3', '2', '1', 'N/A'],
-      filter: i => (i === 'N/A' ? undefined : parseInt(i, 10))
+      type: "confirm",
+      message: "Is this Windows only?",
+      name: "windows",
+      when: answers =>
+        groupedPlatforms.pc.includes(answers.platform) &&
+        answers.platform !== platforms.twitch.value
+    },
+    {
+      type: "confirm",
+      message: "Is this a physical copy?",
+      name: "physical",
+      when: answers =>
+        !answers.plus && groupedPlatforms.console.includes(answers.platform)
+    },
+    {
+      type: "list",
+      message: "What is your interest level?",
+      name: "interest_level",
+      choices: ["4", "3", "2", "1", "N/A"],
+      filter: i => (i === "N/A" ? undefined : parseInt(i, 10))
     }
-  ])
+  ]);
 
   if (!info.slug) {
     // we didn't ask because there's only 1 option
-    info.slug = games[0].slug
+    info.slug = games[0].slug;
   }
 
-  await got(config.readZapUrl('game'), { json: true, body: info })
-  console.log('Success! Added', games.find(g => g.slug === info.slug).name)
-}
+  await got(config.readZapUrl("game"), { json: true, body: info });
+  console.log("Success! Added", games.find(g => g.slug === info.slug).name);
+};
 
-main().catch(e => console.error('there was a problem:', e))
+main().catch(e => console.error("there was a problem:", e));
