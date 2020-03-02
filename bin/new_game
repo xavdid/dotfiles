@@ -28,7 +28,7 @@ const searchGames = async () => {
   const res = await got(`https://api-v3.igdb.com/games`, {
     headers: { "user-key": config.readToken("igdb") },
     method: "POST",
-    body: `search "${name}"; fields name, slug, first_release_date;`
+    body: `search "${name}"; fields name, slug, first_release_date, platforms;`
   });
   const games = JSON.parse(res.body);
   if (!games.length) {
@@ -36,6 +36,8 @@ const searchGames = async () => {
   }
   return games;
 };
+
+const isWindowsOnly = game => !game.platforms.includes(14);
 
 const releaseYear = maybeDate =>
   maybeDate ? new Date(maybeDate * 1000).toISOString().substr(0, 4) : "Unknown";
@@ -59,33 +61,35 @@ const groupedPlatforms = Object.values(platforms).reduce(
 );
 
 const showNA = pred => (pred ? "n/a" : false);
+const formatGameForPrint = game =>
+  `${game.name} (${releaseYear(game.first_release_date)})`;
 
 const main = async () => {
-  let games = [{ name: "cool", slug: "slug" }];
+  let games = [];
 
   while (!games.length) {
     games = await searchGames();
   }
 
+  let game;
   if (games.length === 1) {
-    console.log(
-      `\nFound: ${games[0].name} (${releaseYear(
-        games[0].first_release_date
-      )})\n`
-    );
+    game = games[0];
+    console.log(`\nFound: ${formatGameForPrint(game)}\n`);
+  } else {
+    let { slug } = await inquirer.prompt([
+      {
+        type: "list",
+        message: "Which one, specifically?",
+        name: "slug",
+        choices: games.map(formatGameForPrint)
+      }
+    ]);
+    game = games.find(x => x.slug === slug);
   }
 
+  const windowsOnly = isWindowsOnly(game);
+
   const info = await inquirer.prompt([
-    {
-      type: "list",
-      message: "Which one, specifically?",
-      name: "slug",
-      choices: games.map(({ name, slug, first_release_date }) => ({
-        name: `${name} (${releaseYear(first_release_date)})`,
-        value: slug
-      })),
-      when: () => games.length > 1
-    },
     {
       type: "list",
       message: "What platform?",
@@ -100,8 +104,9 @@ const main = async () => {
     },
     {
       type: "confirm",
-      message: "Is this Windows only?",
+      message: `Is this Windows only? IGDB says ${windowsOnly ? "Y" : "N"}`,
       name: "windows",
+      default: windowsOnly,
       when: answers =>
         groupedPlatforms.pc.includes(answers.platform) &&
         answers.platform !== platforms.twitch.value
@@ -110,8 +115,17 @@ const main = async () => {
       type: "confirm",
       message: "Is this a physical copy?",
       name: "physical",
+      default: false,
       when: answers =>
         !answers.plus && groupedPlatforms.console.includes(answers.platform)
+    },
+    {
+      type: "number",
+      message: "How much did it cost?",
+      name: "cost",
+      default: 0,
+      when: answers =>
+        !answers.plus && answers.platform !== platforms.twitch.value
     },
     {
       type: "list",
@@ -122,13 +136,10 @@ const main = async () => {
     }
   ]);
 
-  if (!info.slug) {
-    // we didn't ask because there's only 1 option
-    info.slug = games[0].slug;
-  }
-
-  await got(config.readZapUrl("game"), { json: true, body: info });
-  console.log("Success! Added", games.find(g => g.slug === info.slug).name);
+  const body = { ...info, slug: game.slug };
+  // console.log("would have sent", body);
+  await got(config.readZapUrl("game"), { json: true, body });
+  console.log("Success! Added", game.name);
 };
 
 main().catch(e => console.error("there was a problem:", e));
