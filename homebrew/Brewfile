@@ -43,6 +43,7 @@ cask "adapter"
 cask "alfred"
 cask "airtable"
 cask "bartender"
+cask "calibre"
 # cask 'duet'
 cask "dropbox"
 # cask 'fluid'
@@ -73,6 +74,8 @@ cask "docker"
 cask "slack"
 cask "virtualbox"
 cask "viscosity"
+cask "tripmode"
+cask "sensei"
 
 # programming
 cask "iterm2"
@@ -102,5 +105,8 @@ mas "Parcel", id: 639968404
 # mas 'PiPifier', id: 1160374471
 mas "Pocket", id: 568494494
 mas "Tweetbot", id: 557168941
-# mas 'Wunderlist', id: 410628904
+mas "Drafts", id: 1435957248
+mas "Trello", id: 1278508951
+mas "Finances", id: 1218241304
+mas "Things", id: 904280696
 # mas 'Xcode', id: 497799835

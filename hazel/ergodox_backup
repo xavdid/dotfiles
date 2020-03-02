@@ -8,7 +8,8 @@ paths = [
     "/Users/david/Dropbox/{}".format(fname),
 ]
 
-key = sys.argv[1].split("_")[-1].split(".")[0]
+# -2 because now the file has the cloned_from, I think?
+key = sys.argv[1].split("_")[-2]
 
 content = "[InternetShortcut]\nURL=https://configure.ergodox-ez.com/ergodox-ez/layouts/{}/latest/0\n".format(
     key
