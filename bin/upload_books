@@ -3,36 +3,36 @@
 // file format can be whatever, but needs (gbid|asdf) in the filename
 
 const requireGlobal = m => {
-  const HOME = require('os').homedir()
-  const { join } = require('path')
+  const HOME = require("os").homedir();
+  const { join } = require("path");
   // `yarn global dir` returns /Users/david/.config/yarn/global
 
   try {
-    return require(join(HOME, '/.config/yarn/global/node_modules/', m))
+    return require(join(HOME, "/.config/yarn/global/node_modules/", m));
   } catch (e) {
     console.error(
       `unable to find "${m}", install it globally:\n\n\tyarn global add ${m}\n`
-    )
-    process.exit(1)
+    );
+    process.exit(1);
   }
-}
+};
 
-const epub = requireGlobal('epub-wordcount')
-const got = requireGlobal('got')
-const config = requireGlobal('@brownman/config')
+const epub = requireGlobal("epub-wordcount");
+const got = requireGlobal("got");
+const config = requireGlobal("@brownman/config");
 
-const url = config.readZapUrl('book')
+const url = config.readZapUrl("book");
 
-const bookPath = process.argv[2]
+const bookPath = process.argv[2];
 // we know this'll pass because this script only runs once hazel has matched an id
-const gbid = bookPath.match(/gbid\|(.*)\.epub/)[1]
+const gbid = bookPath.match(/gbid\|(.*)\.epub/)[1];
 
 epub
-  .countWords(bookPath)
+  .countWords(bookPath, true)
   .then(numWords =>
     got(url, { json: true, body: { word_count: numWords, gbid } })
   )
   .catch(e => {
-    console.log(e)
-    process.exitCode = 1
-  })
+    console.log(e);
+    process.exitCode = 1;
+  });
