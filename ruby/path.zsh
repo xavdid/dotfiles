@@ -1,2 +1,2 @@
-# Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH="/usr/local/opt/ruby@2.6/bin:/usr/local/opt/ruby/bin:$PATH"
