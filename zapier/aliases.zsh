@@ -16,8 +16,8 @@ function finn() {
     fi
 }
 
-alias bastion="ssh davidbrownman@bastion.zapier.com"
-alias rebastion="ssh-keygen -R bastion.zapier.com"
+alias bastion="cd /Users/david/projects/zapier/zapier/web && make lab-production-exec/38389"
+alias rebastion="cd /Users/david/projects/zapier/zapier && git checkout develop && git pull && git checkout develop-d3217a0a082e9bf0d1d22a6883fb12289fabfcfa && git merge develop --ff && git push"
 
 # CLI
 alias zcliprod="cp ~/.zapierrc.prod ~/.zapierrc && export export ZAPIER_BASE_ENDPOINT=''"
