@@ -39,3 +39,5 @@
 	process = git-lfs filter-process
 [branch]
 	autosetuprebase = always
+[init]
+	defaultBranch = main

@@ -38,6 +38,9 @@ done
 #  set up autojump
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
 
+# load root .env file`
+# ee
+
 # blogging
 # needs to be a function so it evaluates at runtime, not at source time
 function fact()
@@ -64,3 +67,5 @@ alias sr="$EDITOR $DROPBOX/Saves/Alfred.alfredpreferences/workflows/user.workflo
 
 # add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
+eval "$(direnv hook zsh)"
+

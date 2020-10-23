@@ -9,7 +9,8 @@ function nod()
         nodemon
     fi
 }
-alias pj="cat package.json | jq"
+alias pj="<package.json | jq"
+alias scripts="<package.json | jq '.scripts'"
 
 function renpm()
 {
@@ -52,8 +53,8 @@ function t() {
     fi
 }
 
-alias wj="warriorjs"
-alias sf="standard --fix"
+# alias wj="warriorjs"
+# alias sf="standard --fix"
 
 export NVM_DIR="/Users/david/.nvm"
 # alias nvmwrite="nvm alias default $(nvm current) && $(nvm version default) > ~/.nvm_default"

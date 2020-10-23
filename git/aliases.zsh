@@ -48,13 +48,13 @@ function chb() {
 #     git remote set-url origin "git@github.com:xavdid/$match[1].git"
 # }
 
-# adapted from http://www.reddit.com/2e513y
-function gi()
+# pulled from https://docs.gitignore.io/install/command-line
+function gi() {
+    curl -sLw "\n" "https://www.toptal.com/developers/gitignore/api/$@" > .gitignore
+}
+
+function gilist()
 {
+    curl "https://www.toptal.com/developers/gitignore/api/list"
     VAL=$(curl https://www.gitignore.io/api/"$*")
-    if [ "$1" = 'list' ];then
-        echo "$VAL"
-    else
-        echo "$VAL" > .gitignore
-    fi
 }

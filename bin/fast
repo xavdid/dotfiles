@@ -1,0 +1,25 @@
+#! /usr/bin/env ruby
+# fast and furious naming conventions are silly
+
+print "Enter a two-word movie title base phrase: "
+title = gets.chomp
+parts = title.split(' ')
+if parts.size > 2
+  puts "NO ONLY TWO WORDS"
+  exit
+end
+
+puts "\n"
+
+titles = [
+  "The #{parts.first} and the #{parts.last}",
+  "2 #{parts.first} 2 #{parts.last}",
+  "The #{parts.first} and the #{parts.last}: Tokyo Drift",
+  "#{parts.first} & #{parts.last}",
+  "#{parts.first} Five",
+  "#{parts.first} & #{parts.last} 6",
+  "#{parts.last} 7",
+  "The F8 of the #{parts.last}"
+]
+
+puts titles.join("\n")
