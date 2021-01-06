@@ -22,3 +22,6 @@ function ee()
 
 # https://askubuntu.com/a/146643
 alias hoist="find . -mindepth 2 -type f -exec mv {} . \;"
+
+# usage: ng 1234
+alias ng="ngrok http --subdomain xavdid"

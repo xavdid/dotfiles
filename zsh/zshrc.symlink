@@ -65,6 +65,8 @@ alias sr="$EDITOR $DROPBOX/Saves/Alfred.alfredpreferences/workflows/user.workflo
 #     fi
 # }
 
+alias ls="lsd"
+
 # add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
 eval "$(direnv hook zsh)"

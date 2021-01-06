@@ -29,13 +29,11 @@ const url = config.readZapUrl("book");
 const ebooksDir = `${HOME}/Downloads/ebooks`;
 const RETRY_KEY = "__retry__";
 
-const sendData = async (bookPath, gbid, isTor) => {
+const sendData = async (bookPath, data) => {
   try {
     const numWords = await countWords(bookPath, true);
 
-    await got.post(url, {
-      json: { word_count: numWords, gbid, isTor },
-    });
+    await got.post(url, { json: { word_count: numWords, ...data } });
   } catch (e) {
     console.log(e);
     process.exitCode = 1;
@@ -67,14 +65,26 @@ const fetchGBooksInfo = async fileName => {
 
   const choices = [
     ...data.items
+      .sort(
+        (
+          { saleInfo: { saleability: aSale } },
+          { saleInfo: { saleability: bSale } }
+        ) => {
+          // either "FOR_SALE" or "NOT_FOR_SALE"
+          if (aSale === bSale) {
+            return 0;
+          }
+          return bSale === "FOR_SALE" ? 1 : -1;
+        }
+      )
       .slice(0, 5)
       .map(({ id, volumeInfo: { title, authors, publishedDate } }) => ({
         value: id,
         name: `${title} by ${authors.join(", ")} (${
-          publishedDate.split("-")[0]
+          (publishedDate || "").split("-")[0]
         })`,
       })),
-    { name: "Enter Title Manually", value: RETRY_KEY },
+    { name: "Enter Title/ID Manually", value: RETRY_KEY },
   ];
   const { gbid } = await inquirer.prompt([
     {
@@ -86,12 +96,13 @@ const fetchGBooksInfo = async fileName => {
   ]);
 
   if (gbid === RETRY_KEY) {
+    // don't pass the filename when recursing
     return fetchGBooksInfo();
   }
   return gbid;
 };
 
-const main = async (bookPath, { shouldMove, tor } = {}) => {
+const main = async (bookPath, { shouldMove } = {}) => {
   // we've got a single epub file path. let's get the filename and send it to the gbooks api
   const fileName = parse(bookPath).name;
 
@@ -99,7 +110,28 @@ const main = async (bookPath, { shouldMove, tor } = {}) => {
   while (!gbid) {
     gbid = await fetchGBooksInfo(fileName);
   }
-  await sendData(bookPath, gbid, tor);
+
+  let { seriesNumber, isTor } = await inquirer.prompt([
+    {
+      type: "confirm",
+      name: "isTor",
+      message: "Is this a TOR free download?",
+      default: false,
+    },
+    {
+      type: "number",
+      name: "seriesNumber",
+      message:
+        "What number in the series is it? Put `-1` if it's not part of a series.",
+      default: -1,
+    },
+  ]);
+
+  if (seriesNumber < 1) {
+    seriesNumber = undefined;
+  }
+
+  await sendData(bookPath, { gbid, isTor, seriesNumber });
 
   if (shouldMove) {
     if (bookPath.includes("Dropbox/Apps/Calibre")) {
@@ -120,8 +152,7 @@ program
   .option(
     "-m, --move",
     "Move the file to the `~/Downloads/ebooks` folder if the operation is successful"
-  )
-  .option("-t, --tor", "Is this a TOR free download?");
+  );
 
 program.parse(process.argv);
 

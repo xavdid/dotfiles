@@ -2,18 +2,20 @@
 cask_args appdir: "/Applications"
 
 # taps, expanding functionality
-tap "caskroom/cask"
-tap "caskroom/versions"
+tap "heroku/brew"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "vitorgalvao/tiny-scripts"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
 
 # brews
 brew "ack"
 brew "autojump"
 brew "coreutils"
 brew "git"
-brew "hr"
 brew "hub"
 brew "jq"
 brew "libav" # for pulling audio out of videos
@@ -28,6 +30,8 @@ brew "youtube-dl"
 # brew "zsh" # comes default now?
 # brew "zsh-completions"
 # brew "zsh-syntax-highlighting"
+brew "font-hack-nerd-font"
+brew "lsd"
 
 brew "vitorgalvao/tiny-scripts/cask-repair"
 
@@ -41,9 +45,11 @@ cask "1password"
 cask "a-better-finder-rename"
 cask "adapter"
 cask "alfred"
+cask "alt-tab"
 cask "airtable"
 cask "bartender"
 cask "calibre"
+cask "adobe-digital-editions"
 # cask 'duet'
 cask "dropbox"
 # cask 'fluid'
@@ -52,7 +58,6 @@ cask "flux"
 cask "google-chrome"
 # cask 'google-drive'
 cask "hazel"
-cask "hyperswitch"
 cask "keepingyouawake"
 cask "keka"
 # cask 'keybase'
@@ -64,15 +69,19 @@ cask "scroll-reverser"
 # cask 'typora'
 # cask 'catch'
 cask "transmission"
+cask "smcfancontrol"
+cask "runjs"
+cask "mullvadvpn"
 # cask "plex-media-server"
 cask "screens"
 # cask 'screens-connect'
 cask "zsa-wally"
+cask "firefox"
 
 # work
-cask "docker"
+# cask "docker"
 cask "slack"
-cask "virtualbox"
+# cask "virtualbox"
 cask "viscosity"
 cask "tripmode"
 cask "sensei"
@@ -84,7 +93,7 @@ cask "ngrok"
 # cask 'sublime-text3'
 cask "visual-studio-code"
 # brew 'heroku/brew/heroku'
-brew "neovim"
+# brew "neovim"
 
 # media
 # cask 'spotify'
@@ -92,15 +101,14 @@ brew "neovim"
 cask "vlc"
 
 # gaming
-cask "battle-net"
+# cask "battle-net"
 cask "discord"
-cask "openemu"
+# cask "openemu"
 cask "steam"
 cask "league-of-legends"
-cask "epic-games"
+# cask "epic-games"
 
-# mas '2Do', id: 477670270
-# mas 'Airmail 3', id: 918858936
+mas "AdGuard for Safari", id: 1440147259
 mas "Parcel", id: 639968404
 # mas 'PiPifier', id: 1160374471
 mas "Pocket", id: 568494494
@@ -110,3 +118,5 @@ mas "Trello", id: 1278508951
 mas "Finances", id: 1218241304
 mas "Things", id: 904280696
 # mas 'Xcode', id: 497799835
+mas "Dato", id: 1470584107
+mas "Speedtest", id: 1153157709
