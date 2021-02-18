@@ -2,7 +2,7 @@
 cask_args appdir: "/Applications"
 
 # taps, expanding functionality
-tap "heroku/brew"
+# tap "heroku/brew"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/bundle"
@@ -24,37 +24,43 @@ brew "mas"
 brew "openssl"
 # brew 'redis'
 # brew 'shellcheck'
-brew "tvnamer"
+# brew "tvnamer"
 brew "wifi-password"
 brew "youtube-dl"
 # brew "zsh" # comes default now?
 # brew "zsh-completions"
 # brew "zsh-syntax-highlighting"
-brew "font-hack-nerd-font"
+cask "font-hack-nerd-font"
 brew "lsd"
-
+cask "obsidian"
+cask "zoom"
+cask "daisydisk"
+cask "itsycal"
+cask "zappy"
+brew "direnv"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 
 # programming languages
 # brew 'go'
 # brew 'node' # installed with nvm
-brew "python3"
+# brew "python3"
+brew "pyenv"
 
 # casks
 cask "1password"
-cask "a-better-finder-rename"
-cask "adapter"
+# cask "a-better-finder-rename"
+# cask "adapter"
 cask "alfred"
 cask "alt-tab"
 cask "airtable"
 cask "bartender"
 cask "calibre"
 cask "adobe-digital-editions"
-# cask 'duet'
+cask "dash"
 cask "dropbox"
 # cask 'fluid'
-cask "flux"
-# cask "font-inconsolata"
+# cask "flux"
+cask "font-inconsolata"
 cask "google-chrome"
 # cask 'google-drive'
 cask "hazel"
@@ -68,10 +74,10 @@ cask "spectacle"
 cask "scroll-reverser"
 # cask 'typora'
 # cask 'catch'
-cask "transmission"
-cask "smcfancontrol"
+# cask "transmission"
+# cask "smcfancontrol"
 cask "runjs"
-cask "mullvadvpn"
+# cask "mullvadvpn"
 # cask "plex-media-server"
 cask "screens"
 # cask 'screens-connect'
@@ -83,7 +89,7 @@ cask "firefox"
 cask "slack"
 # cask "virtualbox"
 cask "viscosity"
-cask "tripmode"
+# cask "tripmode"
 cask "sensei"
 
 # programming
@@ -93,26 +99,26 @@ cask "ngrok"
 # cask 'sublime-text3'
 cask "visual-studio-code"
 # brew 'heroku/brew/heroku'
-# brew "neovim"
+# brew "neovim"f
 
 # media
 # cask 'spotify'
 # cask 'techstoreclub-simple-comic'
-cask "vlc"
+# cask "vlc"
 
 # gaming
 # cask "battle-net"
 cask "discord"
 # cask "openemu"
 cask "steam"
-cask "league-of-legends"
+# cask "league-of-legends"
 # cask "epic-games"
 
 mas "AdGuard for Safari", id: 1440147259
 mas "Parcel", id: 639968404
 # mas 'PiPifier', id: 1160374471
 mas "Pocket", id: 568494494
-mas "Tweetbot", id: 557168941
+# mas "Tweetbot", id: 557168941
 mas "Drafts", id: 1435957248
 mas "Trello", id: 1278508951
 mas "Finances", id: 1218241304

@@ -9,7 +9,11 @@ then
   alias la='gls -A --color'
 fi
 
-alias mip="ifconfig |grep inet"
+function mip()
+{
+  echo -e "local: $(ipconfig getifaddr en0)\npublic: $(curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g')"
+}
+
 alias ip="curl http://ipecho.net/plain ;echo"
 
 alias cda="cd -"

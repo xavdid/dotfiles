@@ -6,7 +6,7 @@
 # to make sure you're on the latest and greatest.
 
 # we don't need this often, don't want to run it by accident
-echo 'not for now'
+echo 'skipping `dot` for now'
 exit
 
 export DOTFILES=$HOME/.dotfiles

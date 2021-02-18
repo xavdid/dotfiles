@@ -50,9 +50,6 @@ sudo systemsetup -setrestartfreeze on
 # Check for software updates daily, not just once per week
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
-# Disable Notification Center and remove the menu bar icon
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
-
 # Disable :
 #   smart quotes
 #   smart dashes
@@ -86,16 +83,10 @@ sudo pmset -a hibernatemode 0
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-# Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# Enable “natural” scrolling
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
-# Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-# Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# Increase sound quality for Bluetooth headphones/headsets defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
@@ -111,8 +102,9 @@ defaults write -g InitialKeyRepeat -int 15;
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Stop iTunes from responding to the keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+# stops itunes from responding to media keys
+# don't like that though; run `launchctl load ...` to get it back
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 # Disable mouse acceleration
 defaults write .GlobalPreferences com.apple.mouse.scaling 0
@@ -324,6 +316,7 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
 # Visualize CPU usage in the Activity Monitor Dock icon
+# Don't think this works in Catalina
 defaults write com.apple.ActivityMonitor IconType -int 5
 
 # Show all processes in Activity Monitor

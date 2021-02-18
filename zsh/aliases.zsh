@@ -1,1 +1,1 @@
-alias sz="source ~/.zshrc"
+alias sz="exec zsh"

@@ -71,3 +71,9 @@ alias ls="lsd"
 fpath=(~/.zsh/completion $fpath)
 eval "$(direnv hook zsh)"
 
+
+# Created by `userpath` on 2021-01-08 00:03:23
+export PATH="$PATH:/Users/david/.local/bin"
+
+source $HOME/.poetry/env
+export PATH="$HOME/.poetry/bin:$PATH"

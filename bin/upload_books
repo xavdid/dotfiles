@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const HOME = require("os").homedir();
-const requireGlobal = m => {
+const requireGlobal = (m) => {
   const { join } = require("path");
   // `yarn global dir` returns /Users/david/.config/yarn/global
 
@@ -40,7 +40,7 @@ const sendData = async (bookPath, data) => {
   }
 };
 
-const fetchGBooksInfo = async fileName => {
+const fetchGBooksInfo = async (fileName) => {
   let data;
   if (fileName) {
     data = await got(
@@ -175,7 +175,7 @@ let inputPath = resolve(program.args[0]);
 if (fs.lstatSync(inputPath).isDirectory()) {
   const epubFiles = fs
     .readdirSync(inputPath)
-    .filter(file => extname(file) === ".epub");
+    .filter((file) => extname(file) === ".epub");
   if (epubFiles.length !== 1) {
     errorOut();
   }
@@ -185,7 +185,7 @@ if (fs.lstatSync(inputPath).isDirectory()) {
 }
 
 // sendData(path, bookId);
-main(inputPath, { shouldMove: program.move, tor: program.tor }).catch(e => {
+main(inputPath, { shouldMove: program.move, tor: program.tor }).catch((e) => {
   console.error(e);
   process.exit(1);
 });
