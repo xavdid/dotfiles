@@ -10,7 +10,16 @@ function nod()
     fi
 }
 alias pj="<package.json | jq"
-alias scripts="<package.json | jq '.scripts'"
+
+function scripts()
+{
+    if [ -f package.json ]; then
+        echo "\n$(<package.json | jq --raw-output 'if .scripts then "  \(.scripts | keys[])" else "  no 'scripts' property in package.json" end')\n"
+    else
+        echo "No package.json file"
+    fi
+}
+
 
 function renpm()
 {
