@@ -32,10 +32,10 @@ function b() {
     elif [ -f build ];then
         ./build "$@"
     elif [ -f package.json ] && [ "$(jq '.scripts.build' package.json)" != "null" ];then
-        if [ -f yarn.lock ];then
-          yarn build
-        else
+        if [ -f package-lock.json ];then
           npm run build
+        else
+          yarn build
         fi
     else
         echo "Can't guess build method, do it yourself"
@@ -49,11 +49,11 @@ function t() {
         # nice wrapper for npm test
         zapier test "$@"
     elif [ -f package.json ];then
-      if [ -f yarn.lock ];then
-        yarn test "$@"
+      if [ -f package-lock.json ];then
+        npm run test "$@"
       else
         # could check if test key is defined, but since npm supplies it by default, it's fine
-        npm test "$@"
+        yarn test "$@"
       fi
     elif [ -f tests.py ];then # for crypto, not sure what the standard name is
         python tests.py
@@ -62,26 +62,8 @@ function t() {
     fi
 }
 
+# setup nodenv
+eval "$(nodenv init -)"
+
 # alias wj="warriorjs"
 # alias sf="standard --fix"
-
-export NVM_DIR="/Users/david/.nvm"
-# alias nvmwrite="nvm alias default $(nvm current) && $(nvm version default) > ~/.nvm_default"
-
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-## this runs nvm on directory change, but it's too slow
-## see: https://github.com/creationix/nvm/issues/110#issuecomment-190125863
-
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-#     if [[ -f .nvmrc && -r .nvmrc ]]; then
-#         if [[ $(nvm current) != $(cat .nvmrc) ]];then
-#             nvm use
-#         fi
-#     elif [[ $(nvm current) != $(cat ~/.nvm_default) ]]; then
-#         # need to update when I update nvm default version
-#         nvm use default
-#     fi
-# }
-# add-zsh-hook chpwd load-nvmrc

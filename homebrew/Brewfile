@@ -42,9 +42,10 @@ brew "vitorgalvao/tiny-scripts/cask-repair"
 
 # programming languages
 # brew 'go'
-# brew 'node' # installed with nvm
+# brew 'node' # installed with nodenv
 # brew "python3"
 brew "pyenv"
+brew "nodenv"
 
 # casks
 cask "1password"
