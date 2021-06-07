@@ -23,17 +23,16 @@ const { program } = requireGlobal("commander");
 const inquirer = requireGlobal("inquirer");
 const { extname, basename, parse, resolve, join } = require("path");
 const fs = require("fs");
+const { spawnSync } = require("child_process");
 
 const url = config.readZapUrl("book");
 
-const ebooksDir = `${HOME}/Downloads/ebooks`;
+const EBOOKS_DIR = `${HOME}/Downloads/ebooks`;
 const RETRY_KEY = "__retry__";
 
-const sendData = async (bookPath, data) => {
+const sendData = async (data) => {
   try {
-    const numWords = await countWords(bookPath, true);
-
-    await got.post(url, { json: { word_count: numWords, ...data } });
+    await got.post(url, { json: data });
   } catch (e) {
     console.log(e);
     process.exitCode = 1;
@@ -102,14 +101,15 @@ const fetchGBooksInfo = async (fileName) => {
   return gbid;
 };
 
-const main = async (bookPath, { shouldMove } = {}) => {
-  // we've got a single epub file path. let's get the filename and send it to the gbooks api
-  const fileName = parse(bookPath).name;
+const processEpub = async (bookPath, { shouldMove } = {}) => {
+  const searchInfo = parse(bookPath).name;
 
   let gbid;
   while (!gbid) {
-    gbid = await fetchGBooksInfo(fileName);
+    gbid = await fetchGBooksInfo(searchInfo);
   }
+
+  const word_count = await countWords(bookPath, true);
 
   let { seriesNumber, isTor } = await inquirer.prompt([
     {
@@ -131,18 +131,63 @@ const main = async (bookPath, { shouldMove } = {}) => {
     seriesNumber = undefined;
   }
 
-  await sendData(bookPath, { gbid, isTor, seriesNumber });
+  await sendData({ gbid, isTor, seriesNumber, word_count });
 
   if (shouldMove) {
     if (bookPath.includes("Dropbox/Apps/Calibre")) {
       console.log("skipping move because it's already in calibre");
     } else {
-      fs.renameSync(bookPath, `${ebooksDir}/${parse(bookPath).base}`);
-      console.log(`moved file to ${ebooksDir}`);
+      fs.renameSync(bookPath, `${EBOOKS_DIR}/${parse(bookPath).base}`);
+      console.log(`moved file to ${EBOOKS_DIR}`);
     }
   } else {
     console.log(`skipping move`);
   }
+};
+
+const processOdm = async (odmPath) => {
+  const { status, stdout, stderr } = spawnSync(
+    "odmpy",
+    ["info", odmPath, "-f", "json"],
+    {
+      encoding: "utf-8",
+    }
+  );
+  if (status) {
+    console.error("err from odmpy:");
+    throw new Error(stderr);
+  }
+  const audiobookInfo = JSON.parse(stdout);
+
+  const num_minutes = audiobookInfo.total_duration.total_minutes;
+  const searchInfo = `${audiobookInfo.title} ${audiobookInfo.creators[0]}`; // might need author too, might not
+
+  let gbid;
+  while (!gbid) {
+    gbid = await fetchGBooksInfo(searchInfo);
+  }
+
+  let { seriesNumber, isTor } = await inquirer.prompt([
+    {
+      type: "confirm",
+      name: "isTor",
+      message: "Is this a TOR free download?",
+      default: false,
+    },
+    {
+      type: "number",
+      name: "seriesNumber",
+      message:
+        "What number in the series is it? Put `-1` if it's not part of a series.",
+      default: -1,
+    },
+  ]);
+
+  if (seriesNumber < 1) {
+    seriesNumber = undefined;
+  }
+  // await sendData({ gbid, isTor, seriesNumber, num_minutes });
+  console.log(`Done! run:\n\taudiobook ${odmPath}\n`);
 };
 
 /////////////////////////////////////////////////////////////////
@@ -158,7 +203,7 @@ program.parse(process.argv);
 
 const errorOut = () => {
   console.error(
-    "ERR: Supply exactly one path, either an epub file or a directory with exactly 1 epub\n"
+    "ERR: Supply exactly one path: either an epub/odm file or a directory with exactly 1 of those\n"
   );
   console.log(program.help());
   process.exit(1);
@@ -170,22 +215,26 @@ if (program.args.length !== 1) {
 
 // turn `.` into an actual path
 let inputPath = resolve(program.args[0]);
-// check that it's either an epub file or a directory with exactly one epub
 
 if (fs.lstatSync(inputPath).isDirectory()) {
-  const epubFiles = fs
-    .readdirSync(inputPath)
-    .filter((file) => extname(file) === ".epub");
-  if (epubFiles.length !== 1) {
+  const files = fs.readdirSync(inputPath);
+  const matchingFiles = files.filter((file) =>
+    [".epub", ".odm"].includes(extname(file))
+  );
+
+  if (matchingFiles.length !== 1) {
     errorOut();
   }
-  inputPath = join(inputPath, epubFiles[0]);
-} else if (extname(inputPath) !== ".epub") {
+
+  inputPath = join(inputPath, matchingFiles[0]);
+} else if (![".epub", ".odm"].includes(extname(inputPath))) {
   errorOut();
 }
 
-// sendData(path, bookId);
-main(inputPath, { shouldMove: program.move, tor: program.tor }).catch((e) => {
+(extname(inputPath) === ".epub"
+  ? processEpub(inputPath, { shouldMove: program.move })
+  : processOdm(inputPath)
+).catch((e) => {
   console.error(e);
   process.exit(1);
 });
