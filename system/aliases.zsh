@@ -21,7 +21,7 @@ alias cda="cd -"
 # load a .env file into local ENV
 function ee()
 {
-    export $(cat .env)
+  export $(cat .env)
 }
 
 # https://askubuntu.com/a/146643
@@ -29,3 +29,8 @@ alias hoist="find . -mindepth 2 -type f -exec mv {} . \;"
 
 # usage: ng 1234
 alias ng="ngrok http --subdomain xavdid"
+
+function audiobook()
+{
+  odmpy dl "$1" --downloaddir ~/Downloads/audiobooks -mc --mergeformat m4b
+}
