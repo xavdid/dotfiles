@@ -105,7 +105,7 @@ cask "visual-studio-code"
 # media
 # cask 'spotify'
 # cask 'techstoreclub-simple-comic'
-# cask "vlc"
+# cask "iina"
 
 # gaming
 # cask "battle-net"
