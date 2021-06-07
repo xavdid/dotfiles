@@ -33,6 +33,14 @@ function chb() {
     git push -u origin "$1"
 }
 
+# run after renaming the default branch on GH
+function unmaster() {
+    git branch -m master main
+    git fetch origin
+    git branch -u origin/main main
+    git remote set-head origin -a
+}
+
 # push and set upstream branch
 # this doesn't work with my config?
 # function gpu() {
@@ -50,7 +58,11 @@ function chb() {
 
 # pulled from https://docs.gitignore.io/install/command-line
 function gi() {
-    curl -sLw "\n" "https://www.toptal.com/developers/gitignore/api/$@" > .gitignore
+    if [[ $1 == 'list' ]];then
+        curl -sLw "\n" "https://www.toptal.com/developers/gitignore/api/list"
+    else
+        curl -sLw "\n" "https://www.toptal.com/developers/gitignore/api/$@" > .gitignore
+    fi;
 }
 
 function gilist()
