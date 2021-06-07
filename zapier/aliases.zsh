@@ -26,4 +26,5 @@ alias zclilocal="cp ~/.zapierrc.local ~/.zapierrc && export ZAPIER_BASE_ENDPOINT
 alias zdev="DISABLE_ZAPIER_ANALYTICS=1 $PROJECTS_ROOT/zapier/platform/packages/cli/src/bin/run"
 
 # django
-alias djm="docker-compose run web python backend/manage.py"
+alias djm="docker-compose run --rm web python backend/manage.py"
+alias dtest="djm test --keepdb --skip-checks --skip-db-setup"
