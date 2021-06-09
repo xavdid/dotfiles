@@ -186,7 +186,7 @@ const processOdm = async (odmPath) => {
   if (seriesNumber < 1) {
     seriesNumber = undefined;
   }
-  // await sendData({ gbid, isTor, seriesNumber, num_minutes });
+  await sendData({ gbid, isTor, seriesNumber, num_minutes });
   console.log(`Done! run:\n\taudiobook ${odmPath}\n`);
 };
 

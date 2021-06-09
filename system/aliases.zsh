@@ -32,5 +32,5 @@ alias ng="ngrok http --subdomain xavdid"
 
 function audiobook()
 {
-  odmpy dl "$1" --downloaddir ~/Downloads/audiobooks -mc --mergeformat m4b
+  odmpy dl "$1" --downloaddir ~/Downloads/audiobooks -mc --mergeformat m4b --nobookfolder
 }
