@@ -23,12 +23,18 @@ const { program } = requireGlobal("commander");
 const inquirer = requireGlobal("inquirer");
 const { extname, basename, parse, resolve, join } = require("path");
 const fs = require("fs");
-const { spawnSync } = require("child_process");
+const { spawnSync, spawn } = require("child_process");
 
 const url = config.readZapUrl("book");
 
 const EBOOKS_DIR = `${HOME}/Downloads/ebooks`;
 const RETRY_KEY = "__retry__";
+
+const copyToClipboard = (str) => {
+  const proc = spawn("pbcopy");
+  proc.stdin.write(str);
+  proc.stdin.end();
+};
 
 const sendData = async (data) => {
   try {
@@ -187,7 +193,10 @@ const processOdm = async (odmPath) => {
     seriesNumber = undefined;
   }
   await sendData({ gbid, isTor, seriesNumber, num_minutes });
-  console.log(`Done! run:\n\taudiobook ${odmPath}\n`);
+  copyToClipboard(`audiobook ${odmPath}`);
+  console.log(
+    "Done! The `audiobook` command has been copied to the clipboard."
+  );
 };
 
 /////////////////////////////////////////////////////////////////

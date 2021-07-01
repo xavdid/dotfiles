@@ -33,4 +33,6 @@ alias ng="ngrok http --subdomain xavdid"
 function audiobook()
 {
   odmpy dl "$1" --downloaddir ~/Downloads/audiobooks -mc --mergeformat m4b --nobookfolder
+  echo -n "odmpy ret $1" | pbcopy
+  echo "\nDone! The command to return the loan has been copied to the clipboard."
 }
