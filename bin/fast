@@ -19,7 +19,8 @@ titles = [
   "#{parts.first} Five",
   "#{parts.first} & #{parts.last} 6",
   "#{parts.last} 7",
-  "The F8 of the #{parts.last}"
+  "The F8 of the #{parts.last}",
+  "#{parts.first[0]}9",
 ]
 
 puts titles.join("\n")
