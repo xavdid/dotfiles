@@ -20,7 +20,7 @@ titles = [
   "#{parts.first} & #{parts.last} 6",
   "#{parts.last} 7",
   "The F8 of the #{parts.last}",
-  "#{parts.first[0]}9",
+  "#{parts.first[0]}9: The #{parts.first} Saga",
 ]
 
 puts titles.join("\n")
