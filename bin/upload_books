@@ -69,7 +69,7 @@ const fetchGBooksInfo = async (fileName) => {
   }
 
   const choices = [
-    ...data.items
+    ...(data.items || [])
       .sort(
         (
           { saleInfo: { saleability: aSale } },
@@ -85,7 +85,7 @@ const fetchGBooksInfo = async (fileName) => {
       .slice(0, 5)
       .map(({ id, volumeInfo: { title, authors, publishedDate } }) => ({
         value: id,
-        name: `${title} by ${authors.join(", ")} (${
+        name: `${title} by ${(authors || []).join(", ")} (${
           (publishedDate || "").split("-")[0]
         })`,
       })),
@@ -241,7 +241,7 @@ if (fs.lstatSync(inputPath).isDirectory()) {
 }
 
 (extname(inputPath) === ".epub"
-  ? processEpub(inputPath, { shouldMove: program.move })
+  ? processEpub(inputPath, { shouldMove: program.opts().move })
   : processOdm(inputPath)
 ).catch((e) => {
   console.error(e);
