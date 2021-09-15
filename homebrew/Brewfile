@@ -115,7 +115,7 @@ cask "steam"
 # cask "league-of-legends"
 # cask "epic-games"
 
-mas "AdGuard for Safari", id: 1440147259
+# mas "AdGuard for Safari", id: 1440147259
 mas "Parcel", id: 639968404
 # mas 'PiPifier', id: 1160374471
 mas "Pocket", id: 568494494
