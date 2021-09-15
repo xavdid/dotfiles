@@ -20,8 +20,9 @@ alias bastion="cd /Users/david/projects/zapier/zapier/web && make lab-production
 alias rebastion="cd /Users/david/projects/zapier/zapier && git checkout develop && git pull && git checkout develop-d3217a0a082e9bf0d1d22a6883fb12289fabfcfa && git merge develop --ff && git push"
 
 # CLI
-alias zcliprod="cp ~/.zapierrc.prod ~/.zapierrc && export export ZAPIER_BASE_ENDPOINT=''"
-alias zclipers="cp ~/.zapierrc.personal ~/.zapierrc && export export ZAPIER_BASE_ENDPOINT=''"
+alias zcliprod="cp ~/.zapierrc.prod ~/.zapierrc && export ZAPIER_BASE_ENDPOINT=''"
+alias zcliprod="cp ~/.zapierrc.prod ~/.zapierrc && export ZAPIER_BASE_ENDPOINT='zapier-staging.com'"
+alias zclipers="cp ~/.zapierrc.personal ~/.zapierrc && export ZAPIER_BASE_ENDPOINT=''"
 alias zclilocal="cp ~/.zapierrc.local ~/.zapierrc && export ZAPIER_BASE_ENDPOINT='http://localhost:8000'"
 alias zdev="DISABLE_ZAPIER_ANALYTICS=1 $PROJECTS_ROOT/zapier/platform/packages/cli/src/bin/run"
 
