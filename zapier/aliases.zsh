@@ -21,7 +21,7 @@ alias rebastion="cd /Users/david/projects/zapier/zapier && git checkout develop 
 
 # CLI
 alias zcliprod="cp ~/.zapierrc.prod ~/.zapierrc && export ZAPIER_BASE_ENDPOINT=''"
-alias zcliprod="cp ~/.zapierrc.prod ~/.zapierrc && export ZAPIER_BASE_ENDPOINT='zapier-staging.com'"
+alias zclistaging="cp ~/.zapierrc.staging ~/.zapierrc && export ZAPIER_BASE_ENDPOINT='https://zapier-staging.com'"
 alias zclipers="cp ~/.zapierrc.personal ~/.zapierrc && export ZAPIER_BASE_ENDPOINT=''"
 alias zclilocal="cp ~/.zapierrc.local ~/.zapierrc && export ZAPIER_BASE_ENDPOINT='http://localhost:8000'"
 alias zdev="DISABLE_ZAPIER_ANALYTICS=1 $PROJECTS_ROOT/zapier/platform/packages/cli/src/bin/run"
