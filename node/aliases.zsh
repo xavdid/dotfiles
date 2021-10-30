@@ -56,7 +56,11 @@ function t() {
         yarn test "$@"
       fi
     elif [ -f tests.py ];then # for crypto, not sure what the standard name is
-        python tests.py
+        if [ -f poetry.lock ] ;then
+            poetry run python tests.py
+        else
+            python tests.py
+        fi
     else
         echo "Can't guess testing method, do it yourself"
     fi
