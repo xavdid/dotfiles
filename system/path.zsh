@@ -17,7 +17,7 @@ elif [[ $LOC = 'TBP' ]]; then
 elif [[ $LOC = 'TOR' ]]; then
 
 else
-    echo 'No LOC file found'
+    echo 'No LOC file found; add one at ~/.loc'
 fi
 
 if [[ -z "$DROPBOX" ]]; then

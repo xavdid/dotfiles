@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# bootstrap installs things.
+# bootstrap installs things. This is the root file.
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
@@ -26,26 +26,6 @@ fail () {
   echo ''
   exit
 }
-
-# setup_gitconfig () {
-#   if ! [ -f git/gitconfig.local.symlink ]
-#   then
-#     info 'setup gitconfig'
-
-#     git_credential='cache'
-#     git_credential='osxkeychain'
-
-#     user ' - What is your github author name?'
-#     read -e git_authorname
-#     user ' - What is your github author email?'
-#     read -e git_authoremail
-
-#     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
-
-#     success 'gitconfig'
-#   fi
-# }
-
 
 link_file () {
   local src=$1 dst=$2
@@ -134,9 +114,6 @@ install_dotfiles () {
   done
 }
 
-# setup_gitconfig
-install_dotfiles
-
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
 then
@@ -149,10 +126,13 @@ then
   fi
 fi
 
+# I moved this, it used to come before `dot`
+install_dotfiles
+
 # create the folders I expect
 mkdir -p ~/projects
 mkdir -p ~/Downloads/ebooks
-mkdir -p ~/Desktop/Screenshots
+mkdir -p ~/Downloads/audiobooks
 
 echo ''
 echo '  All installed!'
