@@ -245,7 +245,10 @@ defaults write com.apple.dock showhidden -bool true
 defaults write com.apple.dock hide-mirror -bool true
 
 # pin to left
-defaults write com.apple.dock pinning -string start
+defaults write com.apple.dock orientation -string left
+
+# hide recently used apps
+defaults write com.apple.dock show-recents -bool false
 
 
 ###############################################################################

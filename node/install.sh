@@ -1,13 +1,9 @@
 # !/bin/zsh
-#
-# nodenv
-#
-#
-if test ! $(which nodenv)
-then
-  echo "  Run brew install nodenv."
-else
-  echo 'nodenv already installed!'
-fi
 
-echo 'install a version of node now!'
+if test ! $(which yarn)
+then
+  echo "Installing yarn via npm"
+  npm i -g yarn
+else
+  echo 'yarn already installed!'
+fi
