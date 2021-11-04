@@ -23,6 +23,10 @@ The below sections describe the file hierarchy in this repo and where to find so
 5. Install a Node.js version: `nodenv install 16.13.0`
 6. go through the manual settings below
 7. Turn on file vault!
+8. Get or set up an ssh key ([docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account))
+9. Change the clone process for the dotfiles repo back to ssh (`git remote set-url origin git@github.com:xavdid/dotfiles.git`)
+
+I think that's all!
 
 ## Manual Settings
 

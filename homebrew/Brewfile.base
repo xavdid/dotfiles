@@ -1,0 +1,64 @@
+# installations that happen on every mac I own
+cask_args appdir: "/Applications"
+
+# taps, expanding functionality
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/cask-drivers" # for wally
+tap "homebrew/cask-fonts"
+
+# general tools
+brew "autojump"
+brew "direnv"
+brew "gh"
+brew "git"
+brew "jq"
+brew "lsd"
+brew "openssl"
+brew "wifi-password"
+cask "font-hack-nerd-font"
+
+# programming language providers
+brew "pyenv"
+brew "pipx"
+brew "nodenv"
+
+# apps
+cask "1password"
+cask "airtable"
+cask "alfred"
+cask "alt-tab"
+cask "bartender"
+cask "daisydisk"
+cask "dash"
+cask "dropbox"
+cask "dropbox"
+cask "firefox"
+cask "font-inconsolata"
+cask "google-chrome"
+cask "hazel"
+cask "iina"
+cask "iterm2"
+cask "itsycal"
+cask "keepingyouawake"
+cask "keka"
+cask "ngrok"
+cask "numi"
+cask "obsidian"
+cask "paw"
+cask "rocket"
+cask "scroll-reverser"
+cask "sensei"
+cask "slack"
+cask "spectacle"
+cask "visual-studio-code"
+cask "zappy"
+cask "zsa-wally"
+
+# might need some of these, depending
+
+# cask "docker"
+# cask "viscosity"
+# cask 'keybase'
+# cask "zoom"
