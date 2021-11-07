@@ -1,6 +1,10 @@
 # misc synced files
 
-| file             | purpose                 | destination                                |
-| ---------------- | ----------------------- | ------------------------------------------ |
-| `config.yaml`    | `lsd` config file       | `~/.config/lsd`                            |
-| `Shortcuts.json` | `spectacle` config file | `~/Library/Application\ Support/Spectacle` |
+From the destination, run `ln -s $DOTFILES/config/<some file> .`
+
+| file             | purpose                          | destination                                |
+| ---------------- | -------------------------------- | ------------------------------------------ |
+| `config.yaml`    | `lsd` config file                | `~/.config/lsd`                            |
+| `Shortcuts.json` | `spectacle` config file          | `~/Library/Application\ Support/Spectacle` |
+| `config.py`      | `ptpython` config file           | `~/Library/Application\ Support/ptpython`  |
+| `karabiner.json` | `karabiner-elements` config file | `~/.config/karabiner`                      |
