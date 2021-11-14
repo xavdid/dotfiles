@@ -1,0 +1,1 @@
+{"title":"Remap Fn to Meh (Shift + Ctrl + Alt)","rules":[{"description":"Globe -> Meh","manipulators":[{"type":"basic","from":{"key_code":"fn"},"to":[{"repeat":true,"key_code":"left_shift","modifiers":["left_alt","left_control"]}]}]}]}
