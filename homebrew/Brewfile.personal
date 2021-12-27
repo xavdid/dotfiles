@@ -39,6 +39,9 @@ cask "steam"
 # cask "league-of-legends"
 # cask "epic-games"
 
+# for connecting to the switch as a hd
+cask 'android-file-transfer'
+
 # mas is broken in monterrey
 ## mas "AdGuard for Safari", id: 1440147259
 # mas "Parcel", id: 639968404
