@@ -71,7 +71,35 @@
                                 "type": "basic"
                             }
                         ]
-                    }
+                    },
+                    {
+                        "description": "Remap cmd+alt+i -> cmd+alt+j",
+                        "manipulators": [
+                          {
+                            "conditions": [
+                              {
+                                "bundle_identifiers": ["^org\\.mozilla\\.firefox$"],
+                                "description": "Firefox Only",
+                                "type": "frontmost_application_if"
+                              }
+                            ],
+                            "from": {
+                              "key_code": "j",
+                              "modifiers": {
+                                "mandatory": ["left_alt", "left_gui"]
+                              }
+                            },
+                            "to": [
+                              {
+                                "key_code": "i",
+                                "modifiers": ["left_alt", "left_gui"],
+                                "repeat": false
+                              }
+                            ],
+                            "type": "basic"
+                          }
+                        ]
+                      }
                 ]
             },
             "devices": [
@@ -94,18 +122,6 @@
                             "to": [
                                 {
                                     "key_code": "escape"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "escape"
-                            },
-                            "to": [
-                                {
-                                    "software_function": {
-                                        "iokit_power_management_sleep_system": {}
-                                    }
                                 }
                             ]
                         }
