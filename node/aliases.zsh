@@ -66,6 +66,20 @@ function t() {
     fi
 }
 
+# test:watch
+function tw() {
+    if [ -f package.json ];then
+      if [ -f package-lock.json ];then
+        npm run test:watch "$@"
+      else
+        # could check if test key is defined, but since npm supplies it by default, it's fine
+        yarn --silent test:watch "$@"
+      fi
+    else
+        echo "No known watch method"
+    fi
+}
+
 # setup nodenv
 eval "$(nodenv init -)"
 
