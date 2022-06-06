@@ -25,7 +25,7 @@ cask "screens"
 # cask "docker"
 # brew "tvnamer"
 # cask "transmission"
-# cask "mullvadvpn"
+cask "mullvadvpn"
 # cask 'screens-connect'
 # cask "a-better-finder-rename"
 
@@ -43,7 +43,7 @@ cask "steam"
 cask 'android-file-transfer'
 
 # mas is broken in monterrey
-## mas "AdGuard for Safari", id: 1440147259
+# mas "AdGuard for Safari", id: 1440147259
 # mas "Parcel", id: 639968404
 # mas "Pocket", id: 568494494
 # mas "Drafts", id: 1435957248
