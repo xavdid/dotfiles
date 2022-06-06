@@ -80,10 +80,3 @@ eval "$(direnv hook zsh)"
 
 # Created by `userpath` on 2021-01-08 00:03:23
 export PATH="$PATH:/Users/david/.local/bin"
-
-
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
-
-

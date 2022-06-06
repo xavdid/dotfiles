@@ -11,6 +11,7 @@ tap "homebrew/cask-fonts"
 # general tools
 brew "autojump"
 brew "direnv"
+brew "entr"
 brew "gh"
 brew "git"
 brew "jq"
