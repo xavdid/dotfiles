@@ -1,8 +1,8 @@
-# grc overides for ls
-#   Made possible through contributions from generous benefactors like
-#   `brew install coreutils`
-if $(gls &>/dev/null)
-then
+if $(lsd &>/dev/null); then
+  alias ls="lsd"
+elif $(gls &>/dev/null); then
+  # thesre are important so ls is readable
+  # installed via the brew coreutils
   alias ls="gls -F --color"
   alias l="gls -lAh --color"
   alias ll="gls -l --color"
@@ -30,22 +30,7 @@ alias hoist="find . -mindepth 2 -type f -exec mv {} . \;"
 # usage: ng 1234
 alias ng="ngrok http --subdomain xavdid"
 
-function book()
-{
-  upload_books "$(pbpaste)"
-}
-
-function audiobook()
-{(
-  # parens so the whole shell doesn't die on error
-  if [ $# -eq 0 ]; then
-      echo "ERR: Pass the path to the .odm file as the first (and only) arg"
-      exit 1
-  fi
-  set -e
-  odmpy dl "$1" --downloaddir ~/Downloads/audiobooks -mc --mergeformat m4b --nobookfolder
-  echo -n "odmpy ret $1" | pbcopy
-  echo "\nDone! The command to return the loan has been copied to the clipboard."
+function backup-obsidian() {(
+  require-variables DROPBOX || exit 1
+  cp -r $DROPBOX/Apps/Obsidian ~/Desktop && echo 'Done!'
 )}
-
-alias obsidian-backup="cp -r $DROPBOX/Apps/Obsidian ~/Desktop && echo 'Done!'"

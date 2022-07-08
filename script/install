@@ -12,14 +12,14 @@ cd "$(dirname $0)"/..
 # this _can_ be re-run, but doesn't need to be often
 if [[ ! -a ~/.initialized ]]; then
   # Run Homebrew through the Brewfile
-  echo "› brew bundle -- BASE"
+  echo "> brew bundle -- BASE"
   brew bundle --file="homebrew/Brewfile.base"
-  echo "› When this is done, you can run brew bundle --file=\"homebrew/Brewfile.personal\" too"
+  echo "> When this is done, you can run brew bundle --file=\"homebrew/Brewfile.personal\" too"
 else
-  echo "› skipping brew bundling"
+  echo "> skipping brew bundling"
 fi
 
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do zsh ./"${installer}" ; done
 
-echo "› finished installs!"
+echo "> finished installs!"
