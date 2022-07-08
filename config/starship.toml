@@ -1,0 +1,51 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Disable the package module, hiding it from the prompt completely
+[git_status]
+# I'd like this enabled, but it doesn't play nice with huge repos
+# until I can disable it per-machine or repo, I'll deal
+disabled = true
+
+[hg_branch]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[character]
+success_symbol = "[%](bold white)"
+error_symbol = "[%](bold red)"
+
+[directory]
+# TODO show path if we're in repo root. otherwise, repo_root [truncation] pwd (maybe w/ 1 parent)
+# truncation_symbol = "…/"
+style = "bold purple"
+
+[git_branch]
+# colored brackets
+# format = '[\[$branch(:$remote_branch)\]]($style) '
+# uncolored brackets
+format = '\[[$branch(:$remote_branch)]($style)\] '
+style = 'bold green'
+
+[line_break]
+# disabled = true
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
+
+[ruby]
+disabled = true
+
+[nodejs]
+# todo: flag engine version mismatches
+detect_files = ["package.json"]
+detect_folders = []
+format = '[$symbol]($style)'
+
+[sudo]
+disabled = false

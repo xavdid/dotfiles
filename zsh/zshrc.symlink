@@ -1,8 +1,11 @@
-#! /bin/zsh
+#!/usr/bin/env zsh
 
-source ~/.loc
+# set any set local values
+if [[ -f ~/.local_pre_setup.zsh ]];then
+  source ~/.local_pre_setup.zsh
+fi
 
-export ZSH=~/.oh-my-zsh
+# export ZSH=~/.oh-my-zsh
 export DOTFILES=~/.dotfiles
 # all of our zsh files
 typeset -U config_files
@@ -10,8 +13,8 @@ config_files=($DOTFILES/**/*.zsh)
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-export ZSH_THEME="kolo"
-source $ZSH/oh-my-zsh.sh
+# export ZSH_THEME=""
+# source $ZSH/oh-my-zsh.sh
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
@@ -38,45 +41,17 @@ done
 #  set up autojump
 [[ -s "$(brew --prefix)"/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
 
-# load root .env file`
-# ee
-
-# blogging
-# needs to be a function so it evaluates at runtime, not at source time
-function fact()
-{
-  open "https://en.wikipedia.org/wiki/$(date +%B_%d)"
-}
-
-# general purpose
-function iso()
-{
-  date -u +"%Y-%m-%d"
-}
-
-# subredit quick search
-alias sr="$EDITOR $DROPBOX/Saves/Alfred.alfredpreferences/workflows/user.workflow.6033913B-9820-4476-A13D-5D2845147D11/subreddits.py"
-
-# function mongolab()
-# {
-#     if [[ -e '.env' ]]; then
-#         URI=$(_mongolab $1)
-#         if ! [ -z "$URI" ]; then
-#             eval mongo "$URI"
-#         else
-#             echo 'No MONGOLAB key in .env'
-#         fi
-#     else
-#         echo 'No .env found'
-#     fi
-# }
-
-alias ls="lsd"
-
 # add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
+
+# initialize direnv
 eval "$(direnv hook zsh)"
 
+# initialize prompt: starship w/ custom settings paths
+export STARSHIP_CONFIG=$DOTFILES/config/starship.toml
+eval "$(starship init zsh)"
 
-# Created by `userpath` on 2021-01-08 00:03:23
-export PATH="$PATH:/Users/david/.local/bin"
+# do any local post-setup hooks
+if [[ -f ~/.local_post_setup.zsh ]];then
+  source ~/.local_post_setup.zsh
+fi
