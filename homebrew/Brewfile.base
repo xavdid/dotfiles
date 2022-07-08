@@ -10,6 +10,7 @@ tap "homebrew/cask-fonts"
 
 # general tools
 brew "autojump"
+brew "coreutils" # includes gls, the GNU ls
 brew "direnv"
 brew "entr"
 brew "gh"

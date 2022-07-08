@@ -82,6 +82,3 @@ function tw() {
 
 # setup nodenv
 eval "$(nodenv init -)"
-
-# alias wj="warriorjs"
-# alias sf="standard --fix"

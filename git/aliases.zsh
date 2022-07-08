@@ -1,10 +1,3 @@
-# Use `hub` as our git wrapper:
-#   https://github.com/github/hub
-
-# this outputs "alias git=hub"
-eval "$(hub alias -s)"
-
-# alias g="git"
 alias purr="git pull --rebase"
 alias gs="git status"
 alias gp="git push"
@@ -40,21 +33,6 @@ function unmaster() {
     git branch -u origin/main main
     git remote set-head origin -a
 }
-
-# push and set upstream branch
-# this doesn't work with my config?
-# function gpu() {
-#     BRANCH=$(git rev-parse --abbrev-ref HEAD)
-#     echo $BRANCH
-#     git push -u origin "$BRANCH"
-# }
-
-# update remote to match new username
-# function rem() {
-#     [[ $(git remote get-url origin) =~ /(.*)\.git$ ]] &&
-#     # this breaks if we pay attention to shellcheck
-#     git remote set-url origin "git@github.com:xavdid/$match[1].git"
-# }
 
 # pulled from https://docs.gitignore.io/install/command-line
 function gi() {

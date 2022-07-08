@@ -12,7 +12,6 @@ tap "homebrew/cask-fonts"
 tap "heroku/brew"
 tap "yt-dlp/taps"
 
-brew "coreutils"
 brew "libav" # for pulling audio out of videos
 brew "yt-dlp/taps/yt-dlp"
 brew "ffmpeg"
