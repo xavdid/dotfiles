@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+# print out today's ISO date;
+# does no date math for "my date"
+
+date -u +"%Y-%m-%d"
+

@@ -1,8 +1,14 @@
+#!/bin/zsh
+
 # USAGE
 # 1. Copy a URL
 # 2. Run `imgsav filename.extension from post root
 # 3. Paste into image markdown
 
-function imgsav () {
-  curl -s "$(pbpaste)" > "./images/$1"; printf "./images/$1" | pbcopy;
-}
+if [ $# -eq 0 ]; then
+    echo "supply a filename + extension as the first argument"
+    exit 1
+fi
+
+curl -s "$(pbpaste)" > "./images/$1"; printf "./images/$1" | pbcopy;
+

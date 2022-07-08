@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/zsh
 #
 # quickly clone from my preferred resource
 #
 # usage: clo my-repo [this/path]
+
+require-variables GITHUB_CLONE_NAME || exit 1
 
 git clone "git@github.com:$GITHUB_CLONE_NAME/$1.git" $2

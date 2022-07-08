@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# little utility to err and exit if a given variable isn't set
+
+# USAGE:
+# require-variabes A B C || exit 1
+# ... rest of script, knowing A, B, and C are defined
+
+if [ $# -eq 0 ]; then
+    echo "ERR - No arguments supplied"
+    exit 1
+fi
+
+for var in "$@"; do
+  if [[ ! -v $var ]]; then
+    echo "ERR - command requires the \"$var\" variable to be set"
+    exit 1
+  fi
+done

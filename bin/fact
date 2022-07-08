@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+# Open wikipedia's "Today in Hisotry"
+
+open "https://en.wikipedia.org/wiki/$(date +%B_%d)"
