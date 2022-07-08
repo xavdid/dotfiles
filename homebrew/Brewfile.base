@@ -17,9 +17,12 @@ brew "gh"
 brew "git"
 brew "jq"
 brew "lsd"
-brew "tree"
 brew "openssl"
+brew "starship"
+brew "tree"
 brew "wifi-password"
+
+# hacker font
 cask "font-hack-nerd-font"
 
 # programming language providers
