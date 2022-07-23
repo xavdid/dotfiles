@@ -13,7 +13,7 @@ fi
 
 for var in "$@"; do
   if [[ ! -v $var ]]; then
-    echo "ERR - command requires the \"$var\" variable to be set"
+    echo "ERR - command requires the \"$var\" env variable to be set"
     exit 1
   fi
 done

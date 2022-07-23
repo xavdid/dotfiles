@@ -1,8 +1,10 @@
-#!/usr/bin/env zsh -ex
+#!/usr/bin/env zsh -e
 
 # create a backup of my whole calibre installation
 
-EXPORT_LOCATION="~/Desktop/calibre-$(date -u +"%Y-%m-%d")"
+require-variables DROPBOX || exit 1
+
+EXPORT_LOCATION="$HOME/Desktop/calibre-$(date -u +"%Y-%m-%d")"
 
 calibre-debug --export-all-calibre-data $EXPORT_LOCATION all
 mv $EXPORT_LOCATION "$DROPBOX/Archive/Calibre Backup"

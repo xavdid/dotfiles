@@ -7,21 +7,29 @@ const requireGlobal = (m) => {
   try {
     return require(join(HOME, "/.config/yarn/global/node_modules/", m));
   } catch (e) {
-    console.error(
-      `unable to find "${m}", install it globally:\n\n\tyarn global add ${m}\n`
-    );
-    process.exit(1);
+    if (e.code === "MODULE_NOT_FOUND") {
+      console.error(
+        `unable to find "${m}", install it globally:\n\n\tyarn global add ${m}\n`
+      );
+      process.exit(1);
+    }
+    throw e;
   }
 };
 
 /////////////////////////////////////////////////////////////////
+
+if (!process.env.DROPBOX) {
+  console.error(`ERR - command requires the "DROPBOX" env variable to be set`);
+  process.exit(1);
+}
 
 const { countWords } = requireGlobal("epub-wordcount");
 const got = requireGlobal("got");
 const config = requireGlobal("@brownman/config");
 const { program } = requireGlobal("commander");
 const inquirer = requireGlobal("inquirer");
-const { extname, basename, parse, resolve, join } = require("path");
+const { extname, parse, resolve, join } = require("path");
 const fs = require("fs");
 const { spawnSync, spawn } = require("child_process");
 
