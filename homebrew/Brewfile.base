@@ -10,6 +10,7 @@ tap "homebrew/cask-fonts"
 
 # general tools
 brew "autojump"
+brew "bat"
 brew "coreutils" # includes gls, the GNU ls
 brew "direnv"
 brew "entr"
@@ -29,6 +30,7 @@ cask "font-hack-nerd-font"
 brew "pyenv"
 brew "pipx"
 brew "nodenv"
+# brew "go"
 
 # apps
 cask "1password"

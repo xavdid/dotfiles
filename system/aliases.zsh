@@ -1,3 +1,5 @@
+# replace `ls`
+# https://github.com/Peltoche/lsd
 if $(lsd &>/dev/null); then
   alias ls="lsd"
 elif $(gls &>/dev/null); then
@@ -7,6 +9,12 @@ elif $(gls &>/dev/null); then
   alias l="gls -lAh --color"
   alias ll="gls -l --color"
   alias la='gls -A --color'
+fi
+
+# replace `cat`
+# https://github.com/sharkdp/bat
+if $(bat -h &>/dev/null); then
+  alias cat="bat --paging=never"
 fi
 
 function mip()
