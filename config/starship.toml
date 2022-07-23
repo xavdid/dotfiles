@@ -1,11 +1,13 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+add_newline = false
+
 # Disable the package module, hiding it from the prompt completely
 [git_status]
 # I'd like this enabled, but it doesn't play nice with huge repos
 # until I can disable it per-machine or repo, I'll deal
-disabled = true
+disabled = false
 
 [hg_branch]
 disabled = true
@@ -49,3 +51,7 @@ format = '[$symbol]($style)'
 
 [sudo]
 disabled = false
+
+[package]
+# remove `is`
+format = '[$symbol$version]($style) '
