@@ -30,6 +30,7 @@ style = "bold purple"
 # truncation_length = 5
 repo_root_style = "bold purple" # match so that repo_root_format gets used
 repo_root_format = '[$repo_root]($repo_root_style)[$path](bold cyan) '
+home_symbol = "🏠 ~"
 
 [git_branch]
 format = '\[[$branch(:$remote_branch)]($style)\] '
