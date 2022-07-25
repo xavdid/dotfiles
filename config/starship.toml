@@ -3,6 +3,8 @@
 
 add_newline = false
 
+format = '${custom.directory}$all'
+
 # Disable the package module, hiding it from the prompt completely
 [git_status]
 # I'd like this enabled, but it doesn't play nice with huge repos
@@ -23,14 +25,13 @@ success_symbol = "[%](bold white)"
 error_symbol = "[%](bold red)"
 
 [directory]
-# TODO show path if we're in repo root. otherwise, repo_root [truncation] pwd (maybe w/ 1 parent)
-# truncation_symbol = "…/"
+disabled = true # replaced by a custom script
 style = "bold purple"
+# truncation_length = 5
+repo_root_style = "bold purple" # match so that repo_root_format gets used
+repo_root_format = '[$repo_root]($repo_root_style)[$path](bold cyan) '
 
 [git_branch]
-# colored brackets
-# format = '[\[$branch(:$remote_branch)\]]($style) '
-# uncolored brackets
 format = '\[[$branch(:$remote_branch)]($style)\] '
 style = 'bold green'
 
@@ -55,3 +56,10 @@ disabled = false
 [package]
 # remove `is`
 format = '[$symbol$version]($style) '
+
+# replace the build-in directory module
+# see: https://github.com/starship/starship/issues/4199
+[custom.directory]
+when = true
+command = "truncated_git_path"
+description = "custom calculation to get truncated path"
