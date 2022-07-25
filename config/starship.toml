@@ -25,10 +25,10 @@ success_symbol = "[%](bold white)"
 error_symbol = "[%](bold red)"
 
 [directory]
-disabled = true # replaced by a custom script
+disabled = true       # replaced by a custom script
 style = "bold purple"
 # truncation_length = 5
-repo_root_style = "bold purple" # match so that repo_root_format gets used
+repo_root_style = "bold purple"                                        # match so that repo_root_format gets used
 repo_root_format = '[$repo_root]($repo_root_style)[$path](bold cyan) '
 home_symbol = "🏠 ~"
 

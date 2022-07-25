@@ -1,8 +1,11 @@
-export EDITOR='code'
-alias zshconfig="$EDITOR ~/.zshrc"
-alias gitconfig="$EDITOR ~/.gitconfig"
-alias envedit="$EDITOR ~/.env"
-alias dotedit="$EDITOR $DOTFILES"
+export EDITOR='vim'
+
+FANCY_EDITOR="code"
+
+alias zshconfig="$FANCY_EDITOR ~/.zshrc"
+alias gitconfig="$FANCY_EDITOR ~/.gitconfig"
+alias envedit="$FANCY_EDITOR ~/.env"
+alias dotedit="$FANCY_EDITOR $DOTFILES"
 # special case for code, which runs a line of python
 # if there's a python-version, it fails unless it's installed
 # needs to match the default python version
