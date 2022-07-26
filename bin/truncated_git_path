@@ -29,7 +29,8 @@ if is_git_repo:
             print(purple_git_root, cyan_truncated_path, sep='')
 else:
     home_replaced_path = Path(str(cwd).replace(str(Path.home()), '~'))
-    path_to_print = '/'.join(home_replaced_path.parts[-3:])
+    # root is named "/", so paths above home show double slashes when joined
+    path_to_print = '/'.join(home_replaced_path.parts[-3:]).replace('//', '/')
     if path_to_print == '~':
         # special case so the home directory isn't so hard to see
         path_to_print = '🏠 ~'
