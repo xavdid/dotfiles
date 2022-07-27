@@ -20,6 +20,9 @@ disabled = true
 [cmd_duration]
 disabled = true
 
+[golang]
+format = 'using [$symbol($version)]($style) '
+
 [character]
 success_symbol = "[%](bold white)"
 error_symbol = "[%](bold red)"
@@ -40,7 +43,7 @@ style = 'bold green'
 # disabled = true
 
 [python]
-format = '[(\($virtualenv\) )]($style)'
+format = '[(\($virtualenv\) )]($style)${symbol} '
 
 [ruby]
 disabled = true
@@ -56,7 +59,7 @@ disabled = false
 
 [package]
 # remove `is`
-format = '[$symbol$version]($style) '
+format = '[$symbol]($style) '
 
 # replace the build-in directory module
 # see: https://github.com/starship/starship/issues/4199
