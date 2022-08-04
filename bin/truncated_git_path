@@ -6,32 +6,36 @@
 from pathlib import Path
 import subprocess
 
-git_repo_call = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True)
+git_repo_call = subprocess.run(
+    ["git", "rev-parse", "--show-toplevel"], capture_output=True
+)
 is_git_repo = git_repo_call.returncode == 0
 cwd = Path.cwd()
 
 if is_git_repo:
-    git_root = Path(git_repo_call.stdout.strip().decode('utf-8'))
-    purple_git_root = f'%F{{013}}{Path(git_root.parts[-1])}%f'
+    git_root = Path(git_repo_call.stdout.strip().decode("utf-8"))
+    purple_git_root = f"%F{{013}}{Path(git_root.parts[-1])}%f"
 
     if git_root == cwd:
         print(purple_git_root)
     else:
         sub_path = cwd.relative_to(git_root)
         if len(sub_path.parts) <= 2:
-            cyan_sub_path = f'%B%F{{014}}/{sub_path}%f%b'
+            cyan_sub_path = f"%B%F{{014}}/{sub_path}%f%b"
 
-            print(purple_git_root, cyan_sub_path, sep='')
+            print(purple_git_root, cyan_sub_path, sep="")
         else:
-            truncator = '…'
-            cyan_truncated_path = f"%B%F{{014}}/{'/'.join([truncator, *sub_path.parts[-2:]])}%f%b"
+            truncator = "…"
+            cyan_truncated_path = (
+                f"%B%F{{014}}/{'/'.join([truncator, *sub_path.parts[-2:]])}%f%b"
+            )
 
-            print(purple_git_root, cyan_truncated_path, sep='')
+            print(purple_git_root, cyan_truncated_path, sep="")
 else:
-    home_replaced_path = Path(str(cwd).replace(str(Path.home()), '~'))
+    home_replaced_path = Path(str(cwd).replace(str(Path.home()), "~"))
     # root is named "/", so paths above home show double slashes when joined
-    path_to_print = '/'.join(home_replaced_path.parts[-3:]).replace('//', '/')
-    if path_to_print == '~':
+    path_to_print = "/".join(home_replaced_path.parts[-3:]).replace("//", "/")
+    if path_to_print == "~":
         # special case so the home directory isn't so hard to see
-        path_to_print = '🏠 ~'
-    print(f'%F{{013}}{path_to_print}%f')
+        path_to_print = "🏠  ~"
+    print(f"%F{{013}}{path_to_print}%f")
