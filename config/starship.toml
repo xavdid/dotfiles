@@ -21,17 +21,18 @@ disabled = true
 disabled = true
 
 [golang]
-format = 'using [$symbol($version)]($style) '
+format = 'go@[($version)]($style) '
 
 [character]
 success_symbol = "[%](bold white)"
 error_symbol = "[%](bold red)"
 
 [directory]
-disabled = true       # replaced by a custom script
+# replaced by a custom script
+disabled = true
 style = "bold purple"
-# truncation_length = 5
-repo_root_style = "bold purple"                                        # match so that repo_root_format gets used
+# match so that repo_root_format gets used
+repo_root_style = "bold purple"
 repo_root_format = '[$repo_root]($repo_root_style)[$path](bold cyan) '
 home_symbol = "🏠 ~"
 
@@ -65,5 +66,5 @@ format = '[$symbol]($style) '
 # see: https://github.com/starship/starship/issues/4199
 [custom.directory]
 when = true
-command = "truncated_git_path_2"
+command = "truncated_git_path"
 description = "custom calculation to get truncated path"
