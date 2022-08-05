@@ -67,7 +67,7 @@ func main() {
 	home_replaced_path := strings.ReplaceAll(cwd, home, "~")
 
 	if home_replaced_path == "~" {
-		printPurple("🏠  ~")
+		printPurple("🏠 ~")
 		return
 	}
 
