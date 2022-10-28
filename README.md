@@ -36,6 +36,7 @@ This is a running list of changes I need to make manually because I haven't foun
   - uncheck "close windows when quitting"
 - dock
   - Uncheck double click title bar
+  - store it on left
 - accessibility
   - pointer control > trackpad > check enable (with 3 finger)
 - security
@@ -45,9 +46,35 @@ This is a running list of changes I need to make manually because I haven't foun
   - activate with side mouse buttons
 - keyboard
   - text -> uncheck all checkboxes
+  - modifier keys > caps lock -> esc
+  - shortcuts > spoitlight > uncheck
+- trackpad
+  - tap to click > uncheck
 - languages & region
   - general -> advanced -> dates:
     - short: paste `y-MM-dd`
+
+### Finder Preferences
+
+In the finder app preferences, set the following items to show in the sidebar (and then re-order them accordingly):
+
+1. Home
+2. Desktop
+3. Applications
+4. Airdrop
+5. Downloads
+
+### Shell Setup
+
+- If you're on a computer that has weird signing requirements, then you'll have to build the `truncated_path` manually: `go install bin/bin_source/truncated_git_path.go`
+- You may also need to change your shell manually, using `chsh -s /bin/zsh`.
+
+### Mouse
+
+1. Pair your bluetooth mouse (in Bluetooth settings)
+2. mission control -> keyboard/mouse shortcuts
+   1. Mission Control: MB5
+   2. Show Desktop: MB4
 
 ## Topical
 
