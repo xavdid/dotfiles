@@ -68,17 +68,22 @@ function t() {
 
 # test:watch
 function tw() {
-    if [ -f package.json ];then
-      if [ -f package-lock.json ];then
+    if [[ -f package.json && $(jq '.scripts["test:watch"]' package.json) != 'null' ]];then
+      if [[ -f package-lock.json ]];then
         npm run test:watch "$@"
       else
         # could check if test key is defined, but since npm supplies it by default, it's fine
         yarn --silent test:watch "$@"
       fi
     else
-        echo "No known watch method"
+        echo "No known test:watch method"
     fi
 }
 
+alias packing-list="echo '' && npm pack --dry-run --json | jq -r '.[0].files[].path' && echo ''"
+
 # setup nodenv
 eval "$(nodenv init -)"
+# add global yarn to the path;
+# do this here rather than a path file, once the path to yarn is available
+export PATH="$(yarn global bin):$PATH"
