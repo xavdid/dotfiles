@@ -19,7 +19,7 @@ The below sections describe the file hierarchy in this repo and where to find so
    4. links all files
    5. creates some directories
 3. now, open a new shell. This should be _pretty_ close to ready.
-4. Install a Python version: `pyenv install 3.10.0`
+4. Install a Python version: `pyenv install 3.11.0`
 5. Install a Node.js version: `nodenv install 16.13.0`
 6. go through the manual settings below
 7. Turn on file vault!
