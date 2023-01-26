@@ -55,12 +55,16 @@ function t() {
         # could check if test key is defined, but since npm supplies it by default, it's fine
         yarn test "$@"
       fi
-    elif [ -f tests.py ];then # for crypto, not sure what the standard name is
+    elif [ -f tests.py ];then # for cryptopals, not sure what the standard name is
         if [ -f poetry.lock ] ;then
             poetry run python tests.py
         else
             python tests.py
         fi
+    # syntax highlighting on this line is off - the "#qN" is a valid glob pattern
+    # see https://stackoverflow.com/a/41508466/1825390
+    elif [[ -n *_test.go(#qN) ]];then
+        go test
     else
         echo "Can't guess testing method, do it yourself"
     fi
