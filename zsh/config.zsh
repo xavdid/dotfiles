@@ -27,3 +27,7 @@ setopt HIST_REDUCE_BLANKS
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 setopt complete_aliases
+
+# https://stackoverflow.com/a/41508466/1825390
+# enables fancier regex?
+setopt EXTENDED_GLOB
