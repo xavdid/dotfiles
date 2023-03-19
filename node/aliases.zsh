@@ -64,7 +64,9 @@ function t() {
     # syntax highlighting on this line is off - the "#qN" is a valid glob pattern
     # see https://stackoverflow.com/a/41508466/1825390
     elif [[ -n *_test.go(#qN) ]];then
-        go test
+        go test "$@"
+    elif [[ -f mix.exs ]];then
+        mix test "$@"
     else
         echo "Can't guess testing method, do it yourself"
     fi
