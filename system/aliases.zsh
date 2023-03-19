@@ -46,3 +46,6 @@ function backup-obsidian() {(
 # big jumps up
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# yarn global add trash-cli
+alias rm="trash"
