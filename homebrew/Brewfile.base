@@ -28,6 +28,7 @@ cask "font-hack-nerd-font"
 
 # programming language providers
 brew "pyenv"
+brew "pyenv-virtualenv"
 brew "pipx"
 brew "nodenv"
 # brew "go"
