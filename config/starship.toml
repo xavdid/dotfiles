@@ -59,6 +59,8 @@ format = '[$symbol]($style)'
 disabled = false
 
 [package]
+# the little box doesn't do much for me
+disabled = true
 # remove `is`
 format = '[$symbol]($style) '
 
@@ -68,3 +70,7 @@ format = '[$symbol]($style) '
 when = true
 command = "truncated_git_path"
 description = "custom calculation to get truncated path"
+
+[elixir]
+# naming the actual version is slow
+format = '$symbol '
