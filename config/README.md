@@ -8,6 +8,7 @@ From the destination, run `ln -s $DOTFILES/config/<some file> .`
 | `RectangleConfig.json` | `rectangle` config file | just import it manually                   |
 | `config.py`            | `ptpython` config file  | `~/Library/Application\ Support/ptpython` |
 | `starship.toml`        | Starship prompt config  | No need to link, is referenced in `zshrc` |
+| `litecli.ini`          | LiteCLI config          | `~/.config/litecli/config`                |
 
 ## Karabiner
 

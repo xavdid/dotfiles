@@ -1,0 +1,5 @@
+-- https://dba.stackexchange.com/a/219988
+.mode column
+.headers on
+.separator ROW "\n"
+.nullvalue NULL
