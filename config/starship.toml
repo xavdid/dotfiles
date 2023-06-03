@@ -5,11 +5,6 @@ add_newline = false
 
 format = '${custom.directory}$all'
 
-# Disable the package module, hiding it from the prompt completely
-[git_status]
-# I'd like this enabled, but it doesn't play nice with huge repos
-# until I can disable it per-machine or repo, I'll deal
-disabled = false
 
 [hg_branch]
 disabled = true
