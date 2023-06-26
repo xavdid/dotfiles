@@ -207,6 +207,61 @@ const processOdm = async (odmPath) => {
   );
 };
 
+const processAudible = async (audiblePath) => {
+  const { status, stdout, stderr } = spawnSync(
+    // spits out a json of duration and title as pulled from the metadata of the file
+    "ffprobe",
+    [
+      "-v",
+      "error",
+      "-show_entries",
+      "format_tags=title",
+      "-show_entries",
+      "format=duration",
+      "-of",
+      "json",
+      audiblePath,
+    ],
+    {
+      encoding: "utf-8",
+    }
+  );
+
+  if (status !== 0) {
+    throw new Error(stderr);
+  }
+  const {
+    format: {
+      duration,
+      tags: { title },
+    },
+  } = JSON.parse(stdout);
+
+  const num_minutes = Math.floor(parseFloat(duration) / 60);
+
+  let gbid;
+  while (!gbid) {
+    gbid = await fetchGBooksInfo(title);
+  }
+
+  let { seriesNumber } = await inquirer.prompt([
+    {
+      type: "number",
+      name: "seriesNumber",
+      message:
+        "What number in the series is it? Put `-1` if it's not part of a series.",
+      default: -1,
+    },
+  ]);
+  if (seriesNumber < 1) {
+    seriesNumber = undefined;
+  }
+
+  await sendData({ gbid, seriesNumber, num_minutes });
+  copyToClipboard(`audible ${audiblePath}`);
+  console.log("Done! The `audible` command has been copied to the clipboard.");
+};
+
 /////////////////////////////////////////////////////////////////
 
 program
@@ -233,10 +288,12 @@ if (program.args.length !== 1) {
 // turn `.` into an actual path
 let inputPath = resolve(program.args[0]);
 
+const ALLOWED_EXTENSIONS = [".epub", ".odm", ".aax"];
+
 if (fs.lstatSync(inputPath).isDirectory()) {
   const files = fs.readdirSync(inputPath);
   const matchingFiles = files.filter((file) =>
-    [".epub", ".odm"].includes(extname(file))
+    ALLOWED_EXTENSIONS.includes(extname(file))
   );
 
   if (matchingFiles.length !== 1) {
@@ -244,12 +301,14 @@ if (fs.lstatSync(inputPath).isDirectory()) {
   }
 
   inputPath = join(inputPath, matchingFiles[0]);
-} else if (![".epub", ".odm"].includes(extname(inputPath))) {
+} else if (!ALLOWED_EXTENSIONS.includes(extname(inputPath))) {
   errorOut();
 }
 
 (extname(inputPath) === ".epub"
   ? processEpub(inputPath, { shouldMove: program.opts().move })
+  : extname(inputPath) === ".aax"
+  ? processAudible(inputPath)
   : processOdm(inputPath)
 ).catch((e) => {
   console.error(e);
