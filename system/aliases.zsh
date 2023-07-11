@@ -40,7 +40,8 @@ alias ng="ngrok http --subdomain xavdid"
 
 function backup-obsidian() {(
   require-variables DROPBOX || exit 1
-  cp -r $DROPBOX/Apps/Obsidian ~/Desktop && echo 'Done!'
+
+  zip -rq "$DROPBOX/Archive/Obsidian Backups/obsidian-$(date -u +"%Y-%m-%d")" "$DROPBOX/Apps/Obsidian" && echo 'Done!'
 )}
 
 # big jumps up
