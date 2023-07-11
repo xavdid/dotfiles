@@ -159,10 +159,19 @@ const processEpub = async (bookPath, { shouldMove } = {}) => {
   }
 };
 
-const processOdm = async (odmPath) => {
-  const { status, stdout, stderr } = spawnSync(
+const processOdm = async () => {
+  const loansPath = process.env.HOME + "/Downloads/loans.temp.json";
+
+  const { status, stderr } = spawnSync(
     "odmpy",
-    ["info", odmPath, "-f", "json"],
+    [
+      "--noversioncheck",
+      "libby",
+      "--settings",
+      process.env.HOME + ".config/odmpy",
+      "--exportloans",
+      loansPath,
+    ],
     {
       encoding: "utf-8",
     }
@@ -171,10 +180,18 @@ const processOdm = async (odmPath) => {
     console.error("err from odmpy:");
     throw new Error(stderr);
   }
-  const audiobookInfo = JSON.parse(stdout);
+  const audiobookInfo = require(loansPath)[0];
+  if (!audiobookInfo) {
+    throw new Error(`no libby loans found!`);
+  }
+  const duration = audiobookInfo.formats.find(
+    (l) => l.id === "audiobook-mp3"
+  ).duration;
+  const times = duration.split(":").map((n) => parseInt(n));
+  const num_minutes = times[0] * 60 + times[1];
 
-  const num_minutes = audiobookInfo.total_duration.total_minutes;
-  const searchInfo = `${audiobookInfo.title} ${audiobookInfo.creators[0]}`; // might need author too, might not
+  const searchInfo = `${audiobookInfo.title} ${audiobookInfo.firstCreatorName}`; // might need author too, might not
+  console.log("searching for", searchInfo);
 
   let gbid;
   while (!gbid) {
@@ -201,10 +218,7 @@ const processOdm = async (odmPath) => {
     seriesNumber = undefined;
   }
   await sendData({ gbid, isTor, seriesNumber, num_minutes });
-  copyToClipboard(`audiobook ${odmPath}`);
-  console.log(
-    "Done! The `audiobook` command has been copied to the clipboard."
-  );
+  console.log("Done! Next, run `libby`.");
 };
 
 const processAudible = async (audiblePath) => {
@@ -285,31 +299,40 @@ if (program.args.length !== 1) {
   errorOut();
 }
 
-// turn `.` into an actual path
-let inputPath = resolve(program.args[0]);
+let inputPath = "";
+if (program.args[0] === "libby") {
+  inputPath = "libby";
+} else {
+  // turn `.` into an actual path
+  inputPath = resolve(program.args[0]);
 
-const ALLOWED_EXTENSIONS = [".epub", ".odm", ".aax"];
+  const ALLOWED_EXTENSIONS = [".epub", ".odm", ".aax"];
 
-if (fs.lstatSync(inputPath).isDirectory()) {
-  const files = fs.readdirSync(inputPath);
-  const matchingFiles = files.filter((file) =>
-    ALLOWED_EXTENSIONS.includes(extname(file))
-  );
+  if (fs.lstatSync(inputPath).isDirectory()) {
+    const files = fs.readdirSync(inputPath);
+    const matchingFiles = files.filter((file) =>
+      ALLOWED_EXTENSIONS.includes(extname(file))
+    );
 
-  if (matchingFiles.length !== 1) {
+    if (matchingFiles.length !== 1) {
+      errorOut();
+    }
+
+    inputPath = join(inputPath, matchingFiles[0]);
+  } else if (!ALLOWED_EXTENSIONS.includes(extname(inputPath))) {
     errorOut();
   }
-
-  inputPath = join(inputPath, matchingFiles[0]);
-} else if (!ALLOWED_EXTENSIONS.includes(extname(inputPath))) {
-  errorOut();
 }
 
-(extname(inputPath) === ".epub"
+(inputPath === "libby"
+  ? processOdm()
+  : extname(inputPath) === ".epub"
   ? processEpub(inputPath, { shouldMove: program.opts().move })
   : extname(inputPath) === ".aax"
   ? processAudible(inputPath)
-  : processOdm(inputPath)
+  : (() => {
+      throw new Error(`unknown operation, got ${inputPath}`);
+    })()
 ).catch((e) => {
   console.error(e);
   process.exit(1);
