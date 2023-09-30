@@ -1,0 +1,15 @@
+# this is the global default file
+# it'll be used as a fallback there's not a repo-local config file
+
+select = ["E", "F", "I001"]
+ignore = [
+  # line length
+  "E501",
+]
+# report, but don't fix
+unfixable = [
+  # unused imports
+  "F401",
+  # unused variables
+  "F841",
+]
