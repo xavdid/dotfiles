@@ -69,3 +69,11 @@ description = "custom calculation to get truncated path"
 [elixir]
 # naming the actual version is slow
 format = '$symbol '
+
+[bun]
+# don't care about the version
+format = '$symbol '
+
+[swift]
+# naming the actual version is slow
+format = '$symbol '
