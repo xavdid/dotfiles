@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+
+parser = argparse.ArgumentParser(
+    description="Commit changes with an optional task reference (below the fold)."
+)
+parser.add_argument(
+    "-u",
+    "--update",
+    action="store_true",
+    help="Only stage changed files, not new ones.",
+)
+parser.add_argument("commit_message", help="The commit message")
+parser.add_argument("ticket_tag", nargs="?", help="Optional ticketing system tag")
+
+
+def main():
+    args = parser.parse_args()
+
+    if not has_staged_changes():
+        # stage all new (or existing) files
+        subprocess.run(["git", "add", f'--{"update" if args.update else "all"}'])
+
+    commit_message = args.commit_message
+    if args.ticket_tag:
+        commit_message += f"\n\n(completes by {args.ticket_tag})"
+
+    subprocess.run(["git", "commit", "-m", commit_message])
+
+
+def has_staged_changes():
+    try:
+        # raises an error if there is anything staged
+        subprocess.check_output(["git", "diff", "--staged", "--exit-code"])
+        return False
+    except subprocess.CalledProcessError:
+        return True
+
+
+if __name__ == "__main__":
+    main()
