@@ -31,6 +31,7 @@ const { program } = requireGlobal("commander");
 const inquirer = requireGlobal("inquirer");
 const { extname, parse, resolve, join } = require("path");
 const fs = require("fs");
+const { unlink } = require("fs/promises");
 const { spawnSync, spawn } = require("child_process");
 
 const url = config.readZapUrl("book");
@@ -160,7 +161,7 @@ const processEpub = async (bookPath, { shouldMove } = {}) => {
 };
 
 const processOdm = async () => {
-  const loansPath = process.env.HOME + "/Downloads/loans.temp.json";
+  const loansPath = `${HOME}/Downloads/loans.temp.json`;
 
   const { status, stderr } = spawnSync(
     "odmpy",
@@ -168,7 +169,7 @@ const processOdm = async () => {
       "--noversioncheck",
       "libby",
       "--settings",
-      process.env.HOME + ".config/odmpy",
+      `${HOME}/.config/odmpy`,
       "--exportloans",
       loansPath,
     ],
@@ -180,7 +181,11 @@ const processOdm = async () => {
     console.error("err from odmpy:");
     throw new Error(stderr);
   }
-  const audiobookInfo = require(loansPath)[0];
+  const audiobookLoans = require(loansPath);
+
+  // libby command treats "latest" as "last", so grab the last so I stay in sync with the downloader
+  const audiobookInfo = audiobookLoans[audiobookLoans.length - 1];
+
   if (!audiobookInfo) {
     throw new Error(`no libby loans found!`);
   }
@@ -218,6 +223,7 @@ const processOdm = async () => {
     seriesNumber = undefined;
   }
   await sendData({ gbid, isTor, seriesNumber, num_minutes });
+  await unlink(loansPath);
   console.log("Done! Next, run `libby`.");
 };
 
@@ -289,7 +295,7 @@ program.parse(process.argv);
 
 const errorOut = () => {
   console.error(
-    "ERR: Supply exactly one path: either an epub/odm file or a directory with exactly 1 of those\n"
+    "ERR: Supply either a path (either an epub file or a directory with exactly 1 of them) or the word `libby` (for audiobooks)\n"
   );
   console.log(program.help());
   process.exit(1);
