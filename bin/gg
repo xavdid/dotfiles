@@ -25,7 +25,7 @@ def main():
 
     commit_message = args.commit_message
     if args.ticket_tag:
-        commit_message += f"\n\n(completes by {args.ticket_tag})"
+        commit_message += f"\n\n(completes {args.ticket_tag})"
 
     subprocess.run(["git", "commit", "-m", commit_message])
 
