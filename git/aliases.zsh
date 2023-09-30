@@ -6,11 +6,7 @@ alias gt="git log --graph --oneline --decorate"
 alias gb="git branch"
 alias gm="git merge"
 alias gc="git commit"
-
 alias ch="git checkout"
-
-function ggg() { git add --all .; git commit -m "$1"; }
-function gug() { git add -u .; git commit -m "$1"; }
 
 # stolen from Nick Quinlan
 alias pushit="open -g spotify:track:0GugYsbXWlfLOgsmtsdxzg; git push"
