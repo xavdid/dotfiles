@@ -61,4 +61,5 @@ alias packing-list="echo '' && npm pack --dry-run --json | jq -r '.[0].files[].p
 eval "$(nodenv init -)"
 # add global yarn to the path;
 # do this here rather than a path file, once the path to yarn is available
-export PATH="$(yarn global bin):$PATH"
+# do node last so nodenv gets priority
+export PATH="$(yarn global bin):$PATH:$(npm config get prefix)/bin"
