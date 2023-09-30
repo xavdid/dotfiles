@@ -9,5 +9,8 @@
 # fi
 
 # python-based tools I use regularly
-# might be able to replace black w/ ruff
-pipx install black datasette hacker-news-to-sqlite litecli odmpy ptpython reddit-user-to-sqlite sqlite-utils tox universal-test-runner
+# can only install one at a time; https://github.com/pypa/pipx/issues/971
+packages=(black datasette hacker-news-to-sqlite litecli odmpy ptpython reddit-user-to-sqlite sqlite-utils tox universal-test-runner)
+for p in $packages;
+  do pipx install $p
+done
