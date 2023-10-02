@@ -1,0 +1,50 @@
+#!/bin/bash -e
+
+# Replace these variables with your GitHub username and desired local directory
+GITHUB_USERNAME="xavdid"
+LOCAL_FOLDER="$HOME/Desktop/github-archive"
+OUTPUT_FOLDER="$DROPBOX/Archive/Github Backups/Repos"
+ARCHIVE_FILENAME="github-repos-backup-$(date +%Y-%m-%d).tar.gz"
+
+mkdir -p "$LOCAL_FOLDER"
+mkdir -p "$OUTPUT_FOLDER"
+
+# Get the list of repositories
+REPO_LIST=$(gh repo list $GITHUB_USERNAME --json name --source --limit 1000 | jq -r '.[].name')
+TOTAL_REPOS=$(echo "$REPO_LIST" | wc -l)
+
+# Initialize progress variable
+PROGRESS=0
+
+# Function to pad a number to 3 digits
+pad_to_3_digits() {
+    printf "%03d" "$1"
+}
+
+# Loop through the repositories and clone or pull the default branch
+for REPO_NAME in $REPO_LIST; do
+    PROGRESS=$((PROGRESS + 1))
+    LOCAL_PATH="$LOCAL_FOLDER/$REPO_NAME"
+
+    PADDED_PROGRESS=$(pad_to_3_digits "$PROGRESS")
+    PADDED_TOTAL_REPOS=$(pad_to_3_digits "$TOTAL_REPOS")
+
+    echo -n "($PADDED_PROGRESS / $PADDED_TOTAL_REPOS) "
+
+    if [ ! -d "$LOCAL_PATH" ]; then
+        echo "Cloning $REPO_NAME"
+        gh repo clone "$GITHUB_USERNAME/$REPO_NAME" "$LOCAL_PATH" -- --quiet
+    else
+        cd "$LOCAL_PATH"
+        echo "Pulling $REPO_NAME"
+        git pull --quiet
+    fi
+done
+
+echo "Archiving Folder"
+# Archive the contents
+tar -czf "$HOME/Desktop/$ARCHIVE_FILENAME" -C "$LOCAL_FOLDER" .
+
+mv "$HOME/Desktop/$ARCHIVE_FILENAME" "$OUTPUT_FOLDER"
+
+echo "Archive written to $OUTPUT_FOLDER/$ARCHIVE_FILENAME"
