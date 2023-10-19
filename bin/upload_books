@@ -312,7 +312,7 @@ if (program.args[0] === "libby") {
   // turn `.` into an actual path
   inputPath = resolve(program.args[0]);
 
-  const ALLOWED_EXTENSIONS = [".epub", ".odm", ".aax"];
+  const ALLOWED_EXTENSIONS = [".epub", ".odm", ".aax", ".m4b"];
 
   if (fs.lstatSync(inputPath).isDirectory()) {
     const files = fs.readdirSync(inputPath);
@@ -334,7 +334,7 @@ if (program.args[0] === "libby") {
   ? processOdm()
   : extname(inputPath) === ".epub"
   ? processEpub(inputPath, { shouldMove: program.opts().move })
-  : extname(inputPath) === ".aax"
+  : extname(inputPath) === ".aax" || extname(inputPath) === ".m4b"
   ? processAudible(inputPath)
   : (() => {
       throw new Error(`unknown operation, got ${inputPath}`);
