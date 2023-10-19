@@ -12,6 +12,11 @@ parser.add_argument(
     action="store_true",
     help="Only stage changed files, not new ones.",
 )
+parser.add_argument(
+    "--skip-ci",
+    action="store_true",
+    help="Add a tag to skip Netlify CI",
+)
 parser.add_argument("commit_message", help="The commit message")
 parser.add_argument("ticket_tag", nargs="?", help="Optional ticketing system tag")
 
@@ -25,7 +30,10 @@ def main():
 
     commit_message = args.commit_message
     if args.ticket_tag:
-        commit_message += f"\n\n(completes {args.ticket_tag})"
+        commit_message += f"\n\n( completes {args.ticket_tag} )"
+
+    if args.skip_ci:
+        commit_message += "\n\n[skip ci]"
 
     subprocess.run(["git", "commit", "-m", commit_message])
 
