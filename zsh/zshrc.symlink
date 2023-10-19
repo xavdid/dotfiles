@@ -47,6 +47,9 @@ fpath=(~/.zsh/completion $fpath)
 # initialize direnv
 eval "$(direnv hook zsh)"
 
+# bun completions
+[ -s "/Users/david/.bun/_bun" ] && source "/Users/david/.bun/_bun"
+
 # initialize prompt: starship w/ custom settings paths
 export STARSHIP_CONFIG=$DOTFILES/config/starship.toml
 eval "$(starship init zsh)"
