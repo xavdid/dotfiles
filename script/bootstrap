@@ -133,6 +133,7 @@ install_dotfiles
 mkdir -p ~/projects
 mkdir -p ~/Downloads/ebooks
 mkdir -p ~/Downloads/audiobooks
+mkdir -p ~/bin
 
 echo ''
 echo '  All installed!'
