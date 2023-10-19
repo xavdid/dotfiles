@@ -50,3 +50,5 @@ alias ....="cd ../../.."
 
 # yarn global add trash-cli
 alias rm="trash"
+
+alias .j="just"
