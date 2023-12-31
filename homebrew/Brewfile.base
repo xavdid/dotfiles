@@ -13,6 +13,7 @@ brew "autojump"
 brew "bat"
 brew "coreutils" # includes gls, the GNU ls
 brew "direnv"
+brew "fzf"
 brew "gh"
 brew "git"
 brew "jq"
