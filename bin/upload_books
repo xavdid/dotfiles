@@ -126,13 +126,13 @@ const processEpub = async (bookPath, { shouldMove } = {}) => {
 
   const word_count = await countWords(bookPath, true);
 
-  let { seriesNumber, isTor } = await inquirer.prompt([
-    {
-      type: "confirm",
-      name: "isTor",
-      message: "Is this a TOR free download?",
-      default: false,
-    },
+  let { seriesNumber } = await inquirer.prompt([
+    // {
+    //   type: "confirm",
+    //   name: "isTor",
+    //   message: "Is this a TOR free download?",
+    //   default: false,
+    // },
     {
       type: "number",
       name: "seriesNumber",
@@ -146,7 +146,7 @@ const processEpub = async (bookPath, { shouldMove } = {}) => {
     seriesNumber = undefined;
   }
 
-  await sendData({ gbid, isTor, seriesNumber, word_count });
+  await sendData({ gbid, seriesNumber, word_count });
 
   if (shouldMove) {
     if (bookPath.includes("Dropbox/Apps/Calibre")) {
