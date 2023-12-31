@@ -36,6 +36,8 @@ function b() {
         else
           yarn build
         fi
+    elif [ -f justfile ] && [ "$(just --dump --dump-format json | jq '.recipes.build')" != "null" ];then
+        just build
     else
         echo "Can't guess build method, do it yourself"
     fi
