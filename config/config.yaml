@@ -1,13 +1,13 @@
 date: "+%Y-%m-%d\ %H:%M"
 blocks:
-    # - permission
-    - date
-    - size
-    - name
+  # - permission
+  - date
+  - size
+  - name
 display: almost-all
 icons:
-    separator: " "
-# this is great, but is too slow for general use 
+  separator: " "
+# this is great, but is too slow for general use
 # total-size: true
 # I thought I wanted this so git wouldn't show up in tree, but it's good to know the folder is there generally
 # ls shouldn't lie
