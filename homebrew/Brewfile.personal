@@ -13,7 +13,6 @@ tap "heroku/brew"
 tap "xavdid/projects"
 
 # brew "libav" # for pulling audio out of videos
-brew "yt-dlp"
 brew "ffmpeg"
 cask "adapter"
 cask "subler"
