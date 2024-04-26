@@ -9,6 +9,6 @@
 # fi
 
 # python-based tools I use regularly
-pipx install datasette hacker-news-to-sqlite litecli odmpy ptpython reddit-user-to-sqlite sqlite-utils tox universal-test-runner
+pipx install datasette hacker-news-to-sqlite litecli odmpy ptpython reddit-user-to-sqlite sqlite-utils tox universal-test-runner backup-airtable
 # nightly build, which gets bugfixes regularly
 pipx install --pip-args \'--pre\' yt-dlp

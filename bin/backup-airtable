@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+require-variables DROPBOX || exit 1
+
+export $(cat "$HOME/projects/dogsheep/airtable/.env")
+require-variables AIRTABLE_TOKEN || exit 1
+
+BACKUP_FOLDER="$HOME/Desktop/__airtable_backup"
+# https://pypi.org/project/backup-airtable/
+$HOME/.local/bin/backup-airtable $BACKUP_FOLDER
+
+zip -rq "$DROPBOX/Archive/Airtable Backups/airtable-backup-$(date -u +"%Y-%m-%d")" $BACKUP_FOLDER
+
+rm -r $BACKUP_FOLDER
+
+echo "moved to $DROPBOX/Archive/Airtable Backups and deleted temp folder!"
