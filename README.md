@@ -99,7 +99,7 @@ In the finder app preferences, set the following items to show in the sidebar (a
 
 ### Shell Setup
 
-- If you're on a computer that has weird signing requirements, then you'll have to build the `truncated_path` manually: `go install bin/bin_source/truncated_git_path.go`
+- If you're on a computer that has weird signing requirements, then you'll have to build the `truncated_git_path` manually: `go install bin/bin_source/truncated_git_path.go`
 - You may also need to change your shell manually, using `chsh -s /bin/zsh`.
 
 ### Mouse
