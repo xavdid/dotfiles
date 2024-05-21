@@ -9,6 +9,7 @@ From the destination, run `ln -s $DOTFILES/config/<some file> .`
 | `config.py`            | `ptpython` config file  | `~/Library/Application\ Support/ptpython` |
 | `starship.toml`        | Starship prompt config  | No need to link, is referenced in `zshrc` |
 | `litecli.ini`          | LiteCLI config          | `~/.config/litecli/config`                |
+| `direnv.toml`          | `direnv` config file    | `~/.config/direnv`                        |
 
 ## Karabiner
 
