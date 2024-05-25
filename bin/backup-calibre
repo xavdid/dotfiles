@@ -1,4 +1,6 @@
-#!/usr/bin/env zsh -e
+#!/usr/bin/env zsh
+
+set -euo pipefail
 
 # create a backup of my whole calibre installation
 

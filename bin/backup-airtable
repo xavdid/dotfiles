@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 require-variables DROPBOX || exit 1
 
 export $(cat "$HOME/projects/dogsheep/airtable/.env")
