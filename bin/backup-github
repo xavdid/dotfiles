@@ -1,4 +1,6 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -euo pipefail
 
 # Replace these variables with your GitHub username and desired local directories
 GITHUB_USERNAME="xavdid"
