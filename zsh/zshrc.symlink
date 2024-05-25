@@ -60,3 +60,5 @@ if [[ -f ~/.local_post_setup.zsh ]];then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(mise activate zsh)"
