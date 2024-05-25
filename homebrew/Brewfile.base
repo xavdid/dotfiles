@@ -29,11 +29,8 @@ brew "wifi-password"
 cask "font-hack-nerd-font"
 
 # programming language providers
-brew "pyenv"
+brew "mise"
 brew "pipx"
-brew "nodenv"
-brew "go"
-brew "rust"
 
 # apps
 cask "1password"
