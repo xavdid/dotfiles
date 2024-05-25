@@ -13,7 +13,7 @@ if [[ ! -a ~/.initialized ]]; then
   # Set macOS defaults
   $DOTFILES/macos/set-defaults.sh
 else
-  echo "Skipping macos defaults"
+  echo "Skipping macOS defaults"
 fi
 
 # Install homebrew
