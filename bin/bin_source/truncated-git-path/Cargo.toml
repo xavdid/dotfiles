@@ -1,0 +1,8 @@
+[package]
+name = "truncated-git-path"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+home = "0.5.9"
+path-clean = "1.0.1"

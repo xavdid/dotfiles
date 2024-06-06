@@ -63,7 +63,8 @@ format = '[$symbol]($style) '
 # see: https://github.com/starship/starship/issues/4199
 [custom.directory]
 when = true
-command = "truncated_git_path"
+# command = "truncated_git_path"
+command = "~/.dotfiles/bin/bin_source/truncated-git-path/target/release/truncated-git-path"
 description = "custom calculation to get truncated path"
 
 [elixir]
