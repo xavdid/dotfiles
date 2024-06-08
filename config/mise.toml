@@ -2,9 +2,10 @@
 # always languages
 python = ["3.12"]
 node = "lts"
+go = "prefix:1.22"
 
 # global node-based npm tools
-# "npm:tldr" = "latest"
+"npm:tldr" = "latest"
 "npm:trash-cli" = "latest"
 "npm:epub-wordcount" = "latest"
 "npm:will-it-play" = "latest"
