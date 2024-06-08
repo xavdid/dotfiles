@@ -3,8 +3,7 @@
 
 add_newline = false
 
-format = '${custom.directory}$all'
-
+format = '${custom.directory}${custom.directory-basic}$all'
 
 [hg_branch]
 disabled = true
@@ -63,9 +62,15 @@ format = '[$symbol]($style) '
 # see: https://github.com/starship/starship/issues/4199
 [custom.directory]
 when = true
-# command = "truncated_git_path"
-command = "~/.dotfiles/bin/bin_source/truncated-git-path/target/release/truncated-git-path"
+command = "CLICOLOR_FORCE=1 ~/bin/truncated-directory"
 description = "custom calculation to get truncated path"
+format = "$output "                                      # remove any other coloring
+
+[custom.directory-basic]
+when = """ test ! -f ~/bin/truncated-directory """
+command = "pwd"
+format = "\\(missing truncated-git-path\\) $output "
+description = "fallback for when a compiled truncated-git-path is unavailable. Compile TKTK to remove"
 
 [elixir]
 # naming the actual version is slow
@@ -78,3 +83,8 @@ format = '$symbol '
 [swift]
 # naming the actual version is slow
 format = '$symbol '
+
+[direnv]
+disabled = true
+# this is noisy but could be nice if I spent some time on the formatting
+detect_files = [".envrc", ".env"]
