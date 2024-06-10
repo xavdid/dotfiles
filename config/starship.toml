@@ -3,7 +3,7 @@
 
 add_newline = false
 
-format = '${custom.directory}${custom.directory-basic}$all'
+format = '${custom.directory}${custom.directory-basic} $all'
 
 [hg_branch]
 disabled = true
@@ -64,13 +64,13 @@ format = '[$symbol]($style) '
 when = true
 command = "CLICOLOR_FORCE=1 ~/bin/truncated-directory"
 description = "custom calculation to get truncated path"
-format = "$output "                                      # remove any other coloring
+format = "$output"                                       # remove any other coloring
 
 [custom.directory-basic]
 when = """ test ! -f ~/bin/truncated-directory """
 command = "pwd"
-format = "\\(missing truncated-git-path\\) $output "
-description = "fallback for when a compiled truncated-git-path is unavailable. Compile TKTK to remove"
+format = "\\(fallback\\) $output"
+description = "fallback for when a compiled truncated-git-path is unavailable. Compile xavdid/truncated-directory to remove"
 
 [elixir]
 # naming the actual version is slow
