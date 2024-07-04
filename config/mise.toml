@@ -2,7 +2,7 @@
 # always languages
 python = ["3.12"]
 node = "lts"
-go = "prefix:1.22"
+go = "1.22"
 
 # global node-based npm tools
 "npm:tldr" = "latest"
