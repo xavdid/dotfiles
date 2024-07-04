@@ -1,0 +1,999 @@
+{
+    "pipx_spec_version": "0.1",
+    "venvs": {
+        "backup-airtable": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/backup-airtable/bin/backup-airtable",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "httpx": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/backup-airtable/bin/httpx",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "backup-airtable"
+                    ],
+                    "apps_of_dependencies": [
+                        "httpx"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "backup-airtable",
+                    "package_or_url": "backup-airtable",
+                    "package_version": "0.1.0",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.2",
+                "source_interpreter": {
+                    "__Path__": "/opt/homebrew/opt/python@3.12/libexec/bin/python",
+                    "__type__": "Path"
+                },
+                "venv_args": []
+            }
+        },
+        "datasette": {
+            "metadata": {
+                "injected_packages": {
+                    "datasette-render-html": {
+                        "app_paths": [],
+                        "app_paths_of_dependencies": {
+                            "datasette": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/datasette",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "httpx": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/httpx",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "hupper": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/hupper",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "pint": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/pint-convert",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "uvicorn": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/uvicorn",
+                                    "__type__": "Path"
+                                }
+                            ]
+                        },
+                        "apps": [],
+                        "apps_of_dependencies": [
+                            "datasette",
+                            "hupper",
+                            "httpx",
+                            "pint-convert",
+                            "uvicorn"
+                        ],
+                        "include_apps": false,
+                        "include_dependencies": false,
+                        "man_pages": [],
+                        "man_pages_of_dependencies": [],
+                        "man_paths": [],
+                        "man_paths_of_dependencies": {},
+                        "package": "datasette-render-html",
+                        "package_or_url": "datasette-render-html",
+                        "package_version": "1.0",
+                        "pinned": false,
+                        "pip_args": [],
+                        "suffix": ""
+                    },
+                    "datasette-render-markdown": {
+                        "app_paths": [],
+                        "app_paths_of_dependencies": {
+                            "datasette": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/datasette",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "httpx": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/httpx",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "hupper": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/hupper",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "markdown": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/markdown_py",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "pint": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/pint-convert",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "uvicorn": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/uvicorn",
+                                    "__type__": "Path"
+                                }
+                            ]
+                        },
+                        "apps": [],
+                        "apps_of_dependencies": [
+                            "datasette",
+                            "hupper",
+                            "httpx",
+                            "pint-convert",
+                            "uvicorn",
+                            "markdown_py"
+                        ],
+                        "include_apps": false,
+                        "include_dependencies": false,
+                        "man_pages": [],
+                        "man_pages_of_dependencies": [],
+                        "man_paths": [],
+                        "man_paths_of_dependencies": {},
+                        "package": "datasette-render-markdown",
+                        "package_or_url": "datasette-render-markdown",
+                        "package_version": "2.2.1",
+                        "pinned": false,
+                        "pip_args": [],
+                        "suffix": ""
+                    },
+                    "datasette-render-timestamps": {
+                        "app_paths": [],
+                        "app_paths_of_dependencies": {
+                            "datasette": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/datasette",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "httpx": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/httpx",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "hupper": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/hupper",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "pint": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/pint-convert",
+                                    "__type__": "Path"
+                                }
+                            ],
+                            "uvicorn": [
+                                {
+                                    "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/uvicorn",
+                                    "__type__": "Path"
+                                }
+                            ]
+                        },
+                        "apps": [],
+                        "apps_of_dependencies": [
+                            "datasette",
+                            "hupper",
+                            "httpx",
+                            "pint-convert",
+                            "uvicorn"
+                        ],
+                        "include_apps": false,
+                        "include_dependencies": false,
+                        "man_pages": [],
+                        "man_pages_of_dependencies": [],
+                        "man_paths": [],
+                        "man_paths_of_dependencies": {},
+                        "package": "datasette-render-timestamps",
+                        "package_or_url": "/Users/david/projects/datasette-render-timestamps",
+                        "package_version": "1.0.1",
+                        "pinned": false,
+                        "pip_args": [],
+                        "suffix": ""
+                    }
+                },
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/datasette",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "httpx": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/httpx",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "hupper": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/hupper",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "pint": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/pint-convert",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "uvicorn": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/datasette/bin/uvicorn",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "datasette"
+                    ],
+                    "apps_of_dependencies": [
+                        "hupper",
+                        "httpx",
+                        "pint-convert",
+                        "uvicorn"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "datasette",
+                    "package_or_url": "datasette",
+                    "package_version": "0.64.5",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "hacker-news-to-sqlite": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/hacker-news-to-sqlite/bin/hacker-news-to-sqlite",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "charset-normalizer": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/hacker-news-to-sqlite/bin/normalizer",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "sqlite-utils": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/hacker-news-to-sqlite/bin/sqlite-utils",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "tabulate": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/hacker-news-to-sqlite/bin/tabulate",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "tqdm": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/hacker-news-to-sqlite/bin/tqdm",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "hacker-news-to-sqlite"
+                    ],
+                    "apps_of_dependencies": [
+                        "sqlite-utils",
+                        "tabulate",
+                        "normalizer",
+                        "tqdm"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "hacker-news-to-sqlite",
+                    "package_or_url": "hacker-news-to-sqlite",
+                    "package_version": "0.4",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "litecli": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/litecli/bin/litecli",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "pygments": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/litecli/bin/pygmentize",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "sqlparse": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/litecli/bin/sqlformat",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "tabulate": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/litecli/bin/tabulate",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "litecli"
+                    ],
+                    "apps_of_dependencies": [
+                        "pygmentize",
+                        "sqlformat",
+                        "tabulate"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "litecli",
+                    "package_or_url": "litecli",
+                    "package_version": "1.10.0",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "odmpy": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/odmpy",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "charset-normalizer": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/normalizer",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "coverage": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/coverage",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/coverage-3.12",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/coverage3",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "eyed3": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/eyeD3",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "filetype": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/filetype",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "mutagen": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/mid3cp",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/mid3iconv",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/mid3v2",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/moggsplit",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/mutagen-inspect",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/mutagen-pony",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "tqdm": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/bin/tqdm",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "odmpy"
+                    ],
+                    "apps_of_dependencies": [
+                        "normalizer",
+                        "eyeD3",
+                        "coverage",
+                        "coverage-3.12",
+                        "coverage3",
+                        "filetype",
+                        "mid3cp",
+                        "mid3iconv",
+                        "mid3v2",
+                        "moggsplit",
+                        "mutagen-inspect",
+                        "mutagen-pony",
+                        "tqdm"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [
+                        "man1/mid3cp.1",
+                        "man1/mid3iconv.1",
+                        "man1/mid3v2.1",
+                        "man1/moggsplit.1",
+                        "man1/mutagen-inspect.1",
+                        "man1/mutagen-pony.1"
+                    ],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {
+                        "mutagen": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/share/man/man1/mid3cp.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/share/man/man1/mid3iconv.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/share/man/man1/mid3v2.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/share/man/man1/moggsplit.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/share/man/man1/mutagen-inspect.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/odmpy/share/man/man1/mutagen-pony.1",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "package": "odmpy",
+                    "package_or_url": "git+https://git@github.com/ping/odmpy.git",
+                    "package_version": "0.8.1",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "ptpython": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/ptpython/bin/ptipython",
+                            "__type__": "Path"
+                        },
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/ptpython/bin/ptipython3",
+                            "__type__": "Path"
+                        },
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/ptpython/bin/ptipython3.9",
+                            "__type__": "Path"
+                        },
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/ptpython/bin/ptpython",
+                            "__type__": "Path"
+                        },
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/ptpython/bin/ptpython3",
+                            "__type__": "Path"
+                        },
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/ptpython/bin/ptpython3.9",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "pygments": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/ptpython/bin/pygmentize",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "ptipython",
+                        "ptipython3",
+                        "ptipython3.9",
+                        "ptpython",
+                        "ptpython3",
+                        "ptpython3.9"
+                    ],
+                    "apps_of_dependencies": [
+                        "pygmentize"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "ptpython",
+                    "package_or_url": "ptpython",
+                    "package_version": "3.0.23",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "reddit-user-to-sqlite": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/reddit-user-to-sqlite/bin/reddit-user-to-sqlite",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "charset-normalizer": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/reddit-user-to-sqlite/bin/normalizer",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "sqlite-utils": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/reddit-user-to-sqlite/bin/sqlite-utils",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "tabulate": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/reddit-user-to-sqlite/bin/tabulate",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "tqdm": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/reddit-user-to-sqlite/bin/tqdm",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "reddit-user-to-sqlite"
+                    ],
+                    "apps_of_dependencies": [
+                        "sqlite-utils",
+                        "tabulate",
+                        "normalizer",
+                        "tqdm"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "reddit-user-to-sqlite",
+                    "package_or_url": "reddit-user-to-sqlite",
+                    "package_version": "0.4.2",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "sqlite-utils": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/sqlite-utils/bin/sqlite-utils",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "tabulate": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/sqlite-utils/bin/tabulate",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "sqlite-utils"
+                    ],
+                    "apps_of_dependencies": [
+                        "tabulate"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "sqlite-utils",
+                    "package_or_url": "sqlite-utils",
+                    "package_version": "3.35.2",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "stackoverflow-to-sqlite": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/stackoverflow-to-sqlite/bin/stackoverflow-to-sqlite",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "httpx": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/stackoverflow-to-sqlite/bin/httpx",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "sqlite-utils": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/stackoverflow-to-sqlite/bin/sqlite-utils",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "tabulate": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/stackoverflow-to-sqlite/bin/tabulate",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "stackoverflow-to-sqlite"
+                    ],
+                    "apps_of_dependencies": [
+                        "httpx",
+                        "sqlite-utils",
+                        "tabulate"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "stackoverflow-to-sqlite",
+                    "package_or_url": "stackoverflow-to-sqlite",
+                    "package_version": "0.1.1",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.2",
+                "source_interpreter": {
+                    "__Path__": "/opt/homebrew/opt/python@3.12/libexec/bin/python",
+                    "__type__": "Path"
+                },
+                "venv_args": []
+            }
+        },
+        "tox": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/tox/bin/tox",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "chardet": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/tox/bin/chardetect",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "virtualenv": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/tox/bin/virtualenv",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "tox"
+                    ],
+                    "apps_of_dependencies": [
+                        "chardetect",
+                        "virtualenv"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "tox",
+                    "package_or_url": "tox",
+                    "package_version": "4.11.4",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.0",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        },
+        "universal-test-runner": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/universal-test-runner/bin/t",
+                            "__type__": "Path"
+                        },
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/universal-test-runner/bin/universal-test-runner",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {},
+                    "apps": [
+                        "t",
+                        "universal-test-runner"
+                    ],
+                    "apps_of_dependencies": [],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [],
+                    "man_pages_of_dependencies": [],
+                    "man_paths": [],
+                    "man_paths_of_dependencies": {},
+                    "package": "universal-test-runner",
+                    "package_or_url": "universal-test-runner",
+                    "package_version": "0.6.0",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.2",
+                "source_interpreter": {
+                    "__Path__": "/opt/homebrew/opt/python@3.12/libexec/bin/python",
+                    "__type__": "Path"
+                },
+                "venv_args": []
+            }
+        },
+        "yt-dlp": {
+            "metadata": {
+                "injected_packages": {},
+                "main_package": {
+                    "app_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/yt-dlp",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "app_paths_of_dependencies": {
+                        "charset-normalizer": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/normalizer",
+                                "__type__": "Path"
+                            }
+                        ],
+                        "mutagen": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/mid3cp",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/mid3iconv",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/mid3v2",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/moggsplit",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/mutagen-inspect",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/bin/mutagen-pony",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "apps": [
+                        "yt-dlp"
+                    ],
+                    "apps_of_dependencies": [
+                        "mid3cp",
+                        "mid3iconv",
+                        "mid3v2",
+                        "moggsplit",
+                        "mutagen-inspect",
+                        "mutagen-pony",
+                        "normalizer"
+                    ],
+                    "include_apps": true,
+                    "include_dependencies": false,
+                    "man_pages": [
+                        "man1/yt-dlp.1"
+                    ],
+                    "man_pages_of_dependencies": [
+                        "man1/mid3cp.1",
+                        "man1/mid3iconv.1",
+                        "man1/mid3v2.1",
+                        "man1/moggsplit.1",
+                        "man1/mutagen-inspect.1",
+                        "man1/mutagen-pony.1"
+                    ],
+                    "man_paths": [
+                        {
+                            "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/share/man/man1/yt-dlp.1",
+                            "__type__": "Path"
+                        }
+                    ],
+                    "man_paths_of_dependencies": {
+                        "mutagen": [
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/share/man/man1/mid3cp.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/share/man/man1/mid3iconv.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/share/man/man1/mid3v2.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/share/man/man1/moggsplit.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/share/man/man1/mutagen-inspect.1",
+                                "__type__": "Path"
+                            },
+                            {
+                                "__Path__": "/Users/david/.local/pipx/venvs/yt-dlp/share/man/man1/mutagen-pony.1",
+                                "__type__": "Path"
+                            }
+                        ]
+                    },
+                    "package": "yt-dlp",
+                    "package_or_url": "yt-dlp",
+                    "package_version": "2024.5.27",
+                    "pinned": false,
+                    "pip_args": [],
+                    "suffix": ""
+                },
+                "pipx_metadata_version": "0.5",
+                "python_version": "Python 3.12.1",
+                "source_interpreter": null,
+                "venv_args": []
+            }
+        }
+    }
+}
