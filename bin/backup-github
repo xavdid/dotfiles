@@ -13,7 +13,6 @@ mkdir -p "$OUTPUT_FOLDER"
 
 # Get the list of repositories
 REPO_LIST=$(gh repo list $GITHUB_USERNAME --json name --source --limit 1000 | jq -r '.[].name')
-REPO_LIST="${REPO_LIST}"$'\n'"dotfiles" # technically a fork, but I want to inclde it
 TOTAL_REPOS=$(echo "$REPO_LIST" | wc -l)
 
 # Initialize progress variable

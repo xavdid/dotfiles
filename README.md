@@ -1,6 +1,6 @@
 # xavdid does holman does dotfiles
 
-This repo is all of the files I use to power my macOS-specific development environment. The overall structure is based on the work of [Zach Holman](https://github.com/holman/dotfiles), though I've diverged pretty far at this point.[0]
+This repo is all of the files I use to power my macOS-specific development environment. The overall structure is based on (and originally forked from) the work of [Zach Holman](https://github.com/holman/dotfiles), though I've diverged pretty far at this point.
 
 I've built these with a heavy focus on:
 
@@ -108,5 +108,3 @@ In the finder app preferences, set the following items to show in the sidebar (a
 2. mission control -> keyboard/mouse shortcuts
    1. Mission Control: MB5
    2. Show Desktop: MB4
-
-[0]: to see the exact differences, [see this diff](https://github.com/xavdid/dotfiles/compare/master...holman:master)
