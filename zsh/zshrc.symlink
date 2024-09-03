@@ -54,6 +54,9 @@ eval "$(direnv hook zsh)"
 export STARSHIP_CONFIG=$DOTFILES/config/starship.toml
 eval "$(starship init zsh)"
 
+# clear screen for test runner
+export UTR_CLEAR_PRE_RUN=1
+
 # do any local post-setup hooks
 if [[ -f ~/.local_post_setup.zsh ]];then
   source ~/.local_post_setup.zsh
