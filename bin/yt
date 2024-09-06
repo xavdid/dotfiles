@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Downloads a youtube video in mp4 format and puts it on the Desktop
+
+# Check if a URL is passed as an argument
+if [ $# -eq 0 ]; then
+  echo "Usage: yt <video_url>"
+  exit 1
+fi
+
+# the -S flag allows changing the sort priority for determining the "best" file to download
+# these values prioritizes "good" extensions and video codes over other factors (filesize or bitrate, etc)
+# basically, gives mp4 w/ h264, if available
+# see also: https://github.com/yt-dlp/yt-dlp/issues/8322
+yt-dlp -S ext,vcodec:h264 -o "$HOME/Desktop/%(title)s.%(ext)s" "$1"

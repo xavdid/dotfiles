@@ -1,5 +1,5 @@
 function song() {
-    yt-dlp "$1" -x --audio-format mp3 -o '%(title)s.%(ext)s'
+    yt-dlp "$1" -x --audio-format mp3 -o "$HOME/Desktop/%(title)s.%(ext)s"
 }
 
 function cash-grab() {
