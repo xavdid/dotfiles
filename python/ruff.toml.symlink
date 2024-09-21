@@ -1,5 +1,6 @@
 # this is the global default file
 # it'll be used as a fallback there's not a repo-local config file
+[lint]
 
 select = ["E", "F", "I001"]
 ignore = [
