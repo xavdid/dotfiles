@@ -63,18 +63,14 @@ const fetchGBooksInfo = async (fileName) => {
       )}`
     ).json();
   } else {
-    const { title } = await inquirer.prompt([
+    const { gbid } = await inquirer.prompt([
       {
         type: "input",
-        name: "title",
-        message: "What's the book's title?",
+        name: "gbid",
+        message: "What's the book's ID?",
       },
     ]);
-    data = await got(
-      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
-        title
-      )}`
-    ).json();
+    return gbid;
   }
 
   const choices = [
