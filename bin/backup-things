@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# backs up a things3 database to
+# backs up a things3 database to my archive folder
 
 set -euo pipefail
 
@@ -14,4 +14,5 @@ cp -R "$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/Thin
 
 zip -rq "$DROPBOX/Archive/Things3 Backups/things3-$ISO_DATE" "$TMP_PATH"
 
-rm -r "$HOME/Desktop/$FILENAME"
+rm -r "$TMP_PATH"
+echo "Archive written to $DROPBOX/Archive/Things3 Backups"
