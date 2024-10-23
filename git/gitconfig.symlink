@@ -1,6 +1,6 @@
 [user]
 	name = David Brownman
-	email = beamneocube@gmail.com
+	email = oss@xavd.id
 	username = xavdid
 [core]
 	excludesfile = ~/.gitignore_global
