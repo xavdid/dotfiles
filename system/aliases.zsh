@@ -52,3 +52,5 @@ alias ....="cd ../../.."
 alias rm="trash"
 
 alias .j="just"
+# make sure completions work for my alias
+compdef .j="just"
