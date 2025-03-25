@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# print the runtime (in minutes) of an audiobook
+
+if [[ "$#" -ne 1 ]]; then
+  echo "ERR: pass a single path to an audiobook"
+  exit 1
+fi
+
+ffprobe -v error -show_entries format_tags=title -show_entries format=duration -of json "$1" | jq '.format.duration | tonumber / 60 | floor'
