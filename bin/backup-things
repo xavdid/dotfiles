@@ -12,7 +12,7 @@ THINGS_ID="OH4Q6"
 # no trailing slash on the source directory
 cp -R "$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/ThingsData-$THINGS_ID/Things Database.thingsdatabase" "$TMP_PATH"
 
-zip -rq "$DROPBOX/Archive/Things3 Backups/things3-$ISO_DATE" "$TMP_PATH"
+zip -rq "$DROPBOX/Archive/Backups/Things3/things3-$ISO_DATE" "$TMP_PATH"
 
 rm -r "$TMP_PATH"
-echo "Archive written to $DROPBOX/Archive/Things3 Backups"
+echo "Archive written to $DROPBOX/Archive/Backups/Things3 Backups"
