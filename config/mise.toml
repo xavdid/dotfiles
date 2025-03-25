@@ -10,6 +10,7 @@ go = "1.22"
 "npm:epub-wordcount" = "latest"
 "npm:will-it-play" = "latest"
 "npm:yarn" = "latest"
+uv = "latest"
 
 [settings]
 # needed for npm packages
