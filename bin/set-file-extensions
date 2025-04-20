@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# inspired by
+# https://gist.github.com/ws/d3529ff975d7b6994a8e5137e49819c6
+
+# to get extensions, run this from ~/projects and then do some manual filtering. Namely, don't include media files
+# rg --files -g '!go/' | grep '\.[^/]*$' | grep -v '/\.[^/]*$' | sed -n 's/.*\.//p' | sort -u
+
+EXTENSIONS=(
+  Dockerfile astro bash c cc cjs clj cmd coffee cpp css csv elm erb example go h haml hbs hh ini jade jl jq js json json5 jsx just list lock lockb log lua markdown md mdx mjs nix node pbxproj php plist properties ps1 pug py rake rb rs rst scss sh sln snap storyboard swift  teeny template tmpl toml ts tsbuildinfo tsx txt webmanifest wren xml yaml yml zsh
+)
+
+SUCCESSFUL_EXTENSIONS=()
+
+for ext in "${EXTENSIONS[@]}"; do
+  # to update:
+  # if duti -s com.microsoft.VSCode .$ext all; then
+  #   SUCCESSFUL_EXTENSIONS+=("$ext")
+  # fi
+  # to print current values instead:
+  echo $ext
+  duti -x $ext
+  echo
+done
+
+# Print final success message with a bullet-point list
+echo "✅ Successfully set VSCode as the default for:"
+for ext in "${SUCCESSFUL_EXTENSIONS[@]}"; do
+  echo "  • .$ext"
+done
