@@ -15,4 +15,4 @@ cp -R "$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/Thin
 zip -rq "$DROPBOX/Archive/Backups/Things3/things3-$ISO_DATE" "$TMP_PATH"
 
 rm -r "$TMP_PATH"
-echo "Archive written to $DROPBOX/Archive/Backups/Things3 Backups"
+echo "Archive written to $DROPBOX/Archive/Backups/Things3"
