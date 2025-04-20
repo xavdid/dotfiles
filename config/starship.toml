@@ -15,7 +15,7 @@ disabled = true
 disabled = true
 
 [golang]
-format = 'go@[($version)]($style) '
+format = 'go@[($version)](bold cyan) '
 
 [character]
 success_symbol = "[%](bold white)"
@@ -44,10 +44,9 @@ format = '[(\($virtualenv\) )]($style)${symbol} '
 disabled = true
 
 [nodejs]
-# todo: flag engine version mismatches
-detect_files = ["package.json"]
-detect_folders = []
-format = '[$symbol]($style)'
+# don't use $style because it still needs a check for whether the current version is compatible
+# see: https://github.com/starship/starship/issues/3809#issuecomment-2798706868
+format = '[$symbol](bold green)'
 
 [sudo]
 disabled = false
