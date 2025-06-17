@@ -94,7 +94,7 @@ const fetchGBooksInfo = async (fileName) => {
           (publishedDate || "").split("-")[0]
         })`,
       })),
-    { name: "Enter Title/ID Manually", value: RETRY_KEY },
+    { name: "Enter ID Manually", value: RETRY_KEY },
   ];
   const { gbid } = await inquirer.prompt([
     {
