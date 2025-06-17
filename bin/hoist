@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Loop through current directory, pulling all files from sub directories into into the current one.
+# only works at depth 1, but I could fix that
+
+# Loop over all directories in the current directory
+for dir in */ ; do
+  # Check if it's really a directory
+  if [ -d "$dir" ]; then
+    # Move all files from the directory to the current directory
+    mv "$dir"* .
+    # Remove the directory if it's now empty
+    rmdir "$dir" 2>/dev/null
+  fi
+done
