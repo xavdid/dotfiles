@@ -2,4 +2,4 @@
 
 # little script to ping google to verify that I'm online, but only a fixed number of times.
 
-ping -c 5 "google.com"
+ping -c 5 "google.com" -t 2
