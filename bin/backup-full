@@ -1,0 +1,117 @@
+#!/usr/bin/env python
+
+"""
+Takes the latest of each of my service backups and copies them to my disk image.
+"""
+
+import argparse
+import contextlib
+import subprocess
+from datetime import date
+from pathlib import Path
+from shutil import copy2 as copy
+
+VAULT = Path("/Volumes/Vault")
+
+
+@contextlib.contextmanager
+def mount_vault(manual_password: bool):
+    needs_mounting = VAULT not in Path("/Volumes").iterdir()
+
+    if needs_mounting:
+        # https://www.1password.community/discussions/developers/cli-offline-mode/88158
+        if manual_password:
+            pw = None  # typed at runtime
+        else:
+            vault_key_res = subprocess.run(
+                [
+                    "op",
+                    "read",
+                    "--no-newline",
+                    "op://qfllktjcpvds7l6f73naqdkz2u/Periodic Backup Disk Image/password",
+                ],
+                capture_output=True,
+            )
+            if vault_key_res.returncode:
+                print(
+                    "unable to get vault password from 1p:\n\n",
+                    vault_key_res.stderr.decode(),
+                    "\n",
+                )
+                vault_key_res.check_returncode()
+
+            # password w/ a trailing null byte
+            pw = vault_key_res.stdout + b"\0"
+
+        res = subprocess.run(
+            [
+                "/usr/bin/hdiutil",
+                "attach",
+                Path.home() / "Desktop" / "Vault.dmg.sparseimage",
+                "-stdinpass",
+            ],
+            input=pw,
+            capture_output=True,
+        )
+        if res.returncode:
+            raise RuntimeError(f"failed to mount filesystem: \n\n{res.stderr.decode()}")
+
+    try:
+        yield Path("/Volumes/Vault/Service Backups")
+    finally:
+        # only detach if the script mounted
+        if needs_mounting:
+            subprocess.run(
+                ["/usr/bin/hdiutil", "detach", VAULT], check=True, capture_output=True
+            )
+
+
+ZIP_LOCATIONS = [
+    "Github/Repos",
+    "Obsidian",
+    "Zapier",
+    "Things3",
+    "Airtable",
+    "BG Stats",
+    "Calibre",  # this may be weird with copy, since it's a directory?
+    "Kobo/Auto Backups",  # this sort may be weird (or I should pull the old ones)
+    # "Finances", # TODO: organize the files better
+]
+
+
+ARCHIVE_ROOT = Path("/Users/david/Dropbox/Archive/Backups")
+
+
+parser = argparse.ArgumentParser(
+    prog="FullBackup",
+    description="A unifying script responsible for moving the latest of each of my service backups onto an encrypted disk image",
+)
+parser.add_argument(
+    "--offline",
+    action="store_true",
+    help="the `op` CLI doesn't seem to work offline. So pass this arg to specify the password manually at runtime.",
+)
+parser.add_argument(
+    "--dry-run",
+    action="store_true",
+    help="Don't actually copy anything, but mount the drive for real. Good for checking auth mechanisms.",
+)
+
+if __name__ == "__main__":
+    args = parser.parse_args()
+
+    with mount_vault(args.offline) as dest:
+        assert dest.is_dir(), "destination must be a directory"
+
+        for d in ZIP_LOCATIONS:
+            zip_dir = ARCHIVE_ROOT / d
+            latest_zip = sorted(zip_dir.iterdir())[-1]
+            if args.dry_run:
+                print("would copy", latest_zip)
+            else:
+                copy(latest_zip, dest)
+                (dest / "info.txt").write_text(
+                    f"Created via script on {date.today()}\n"
+                )
+
+    # TODO: copy fs to flash drive
