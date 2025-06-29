@@ -11,8 +11,11 @@ BACKUP_FOLDER="$HOME/Desktop/__airtable_backup"
 # https://pypi.org/project/backup-airtable/
 $HOME/.local/bin/backup-airtable --include-comments $BACKUP_FOLDER
 
-zip -rq "$DROPBOX/Archive/Backups/Airtable/airtable-backup-$(date +"%Y-%m-%d")" $BACKUP_FOLDER
+pushd "$HOME/Desktop" > /dev/null
 
+zip -rq "$DROPBOX/Archive/Backups/Airtable/airtable-backup-$(date +"%Y-%m-%d")" "$(basename $BACKUP_FOLDER)"
 rm -r $BACKUP_FOLDER
+
+popd
 
 echo "moved to $DROPBOX/Archive/Backups/Airtable and deleted temp folder!"

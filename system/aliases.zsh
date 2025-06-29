@@ -38,12 +38,6 @@ alias hoist="find . -mindepth 2 -type f -exec mv {} . \;"
 # usage: ng 1234
 alias ng="ngrok http --subdomain xavdid"
 
-function backup-obsidian() {(
-  require-variables DROPBOX || exit 1
-
-  zip -rq "$DROPBOX/Archive/Backups/Obsidian/obsidian-$(date +"%Y-%m-%d")" "$DROPBOX/Apps/Obsidian" && echo 'Done!'
-)}
-
 # big jumps up
 alias ...="cd ../.."
 alias ....="cd ../../.."

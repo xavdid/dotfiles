@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# backs up an obsidian vault
+
+set -euo pipefail
+
+require-variables DROPBOX || exit 1
+
+ISO_DATE="$(date +"%Y-%m-%d")"
+
+pushd "$DROPBOX/Apps" > /dev/null
+
+# zip it all in, ignoring my golinks project (which has the whole repo and node_modules there
+zip -rq "$DROPBOX/Archive/Backups/Obsidian/obsidian-$ISO_DATE" Obsidian -x "Obsidian/.obsidian/plugins/obsidian-golinks/*"
+
+popd > /dev/null
+
+echo 'Done!'
+
