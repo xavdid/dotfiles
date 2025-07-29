@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+# run each backup script in order
+
+backup-airtable
+backup-github
+backup-things
+backup-obsidian
+backup-calibre

@@ -10,6 +10,7 @@ import subprocess
 from datetime import date
 from pathlib import Path
 from shutil import copy2 as copy
+from shutil import copytree
 
 VAULT = Path("/Volumes/Vault")
 
@@ -109,9 +110,11 @@ if __name__ == "__main__":
             if args.dry_run:
                 print("would copy", latest_zip)
             else:
-                copy(latest_zip, dest)
-                (dest / "info.txt").write_text(
-                    f"Created via script on {date.today()}\n"
-                )
+                print(f"copying {latest_zip}...", end="", flush=True)
+                if latest_zip.is_dir():
+                    copytree(latest_zip, dest / latest_zip.name, dirs_exist_ok=True)
+                else:
+                    copy(latest_zip, dest)
+                print("done!")
 
-    # TODO: copy fs to flash drive
+        (dest / "info.txt").write_text(f"Created via script on {date.today()}\n")
