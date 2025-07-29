@@ -63,14 +63,24 @@ const fetchGBooksInfo = async (fileName) => {
       )}`
     ).json();
   } else {
-    const { gbid } = await inquirer.prompt([
+    let { idOrUrl } = await inquirer.prompt([
       {
         type: "input",
-        name: "gbid",
+        name: "idOrUrl",
         message: "What's the book's ID?",
       },
     ]);
-    return gbid;
+
+    // might get a full url here, so check and pull out the ID
+    if (idOrUrl.startsWith("https://")) {
+      const parsedId = new URL(idOrUrl).searchParams.get("id");
+      if (!parsedId) {
+        throw new Error(`Got URL without an "id" query param: ${idOrUrl}`);
+      }
+      return parsedId;
+    }
+
+    return idOrUrl;
   }
 
   const choices = [
@@ -94,7 +104,7 @@ const fetchGBooksInfo = async (fileName) => {
           (publishedDate || "").split("-")[0]
         })`,
       })),
-    { name: "Enter ID Manually", value: RETRY_KEY },
+    { name: "Enter ID / full URL manually", value: RETRY_KEY },
   ];
   const { gbid } = await inquirer.prompt([
     {
