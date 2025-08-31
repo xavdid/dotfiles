@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# a remix of my `yt` script, but for SNL videos
+
+# Check if a URL is passed as an argument
+if [ $# -eq 0 ]; then
+  echo "Usage: snl <video_url>"
+  exit 1
+fi
+
+# strip " - SNL" from the end of the title
+yt-dlp "$1" -S ext,vcodec:h264 --replace-in-metadata title " - SNL" "" --replace-in-metadata title ": " " -- " -o "$DROPBOX/Archive/Videos/SNL/%(title)s.%(ext)s"
