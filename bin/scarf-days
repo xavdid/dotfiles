@@ -1,0 +1,44 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "typer==0.17.3",
+# ]
+# ///
+
+"""
+Given how many rows you've done,
+how many more do you need to do per day to complete a scarf by Oct 29th?
+"""
+
+from datetime import date, timedelta
+from math import ceil
+from typing import Annotated
+
+import typer  # type: ignore
+
+TODAL_ROWS = 786
+
+
+def main(
+    completed_rows: int,
+    starting_tomorrow: Annotated[
+        bool,
+        typer.Option(
+            "--starting-tomorrow",
+            help="Whether to start the remaining days from today (default) or tomorrow",
+        ),
+    ] = False,
+):
+    due = date.fromisoformat("2025-10-29")
+    today = date.today()
+    starting_on = today + timedelta(days=1) if starting_tomorrow else today
+    rows_per_day = (TODAL_ROWS - completed_rows) / (due - starting_on).days
+
+    print(
+        f"Must complete {ceil(rows_per_day)} rows per day (starting {'tomorrow' if starting_tomorrow else 'today'}) to be done by {due}"
+    )
+
+
+if __name__ == "__main__":
+    typer.run(main)
