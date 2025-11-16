@@ -26,6 +26,7 @@ def main(
         bool,
         typer.Option(
             "--starting-tomorrow",
+            "-t",
             help="Whether to start the remaining days from today (default) or tomorrow",
         ),
     ] = False,

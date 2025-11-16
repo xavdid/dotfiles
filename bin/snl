@@ -4,6 +4,8 @@ set -euo pipefail
 
 # a remix of my `yt` script, but for SNL videos
 
+require-variables DROPBOX || exit 1
+
 # Check if a URL is passed as an argument
 if [ $# -eq 0 ]; then
   echo "Usage: snl <video_url>"

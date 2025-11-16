@@ -11,6 +11,7 @@ go = "1.22"
 "npm:will-it-play" = "latest"
 "npm:yarn" = "latest"
 uv = "latest"
+deno = "latest"                 # for yt-dlp
 
 [settings]
 # needed for npm packages
