@@ -2,8 +2,8 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000 # 1 mil should be enough?
+SAVEHIST=1000000 # https://stackoverflow.com/questions/19454837/bash-or-zsh-histsize-vs-histfilesize
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
@@ -18,6 +18,7 @@ unsetopt CORRECT_ALL # don't correct me
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 setopt AUTO_CD # implied `cd` calls
+setopt HIST_IGNORE_SPACE # space-prefixed commands aren't save to history
 
 setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
