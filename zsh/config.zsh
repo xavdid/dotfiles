@@ -2,8 +2,8 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
 HISTFILE=~/.zsh_history
-HISTSIZE=1000000 # 1 mil should be enough?
-SAVEHIST=1000000 # https://stackoverflow.com/questions/19454837/bash-or-zsh-histsize-vs-histfilesize
+HISTSIZE=100000 # 100k is the sweet spot; https://www.reddit.com/r/zsh/comments/x7uj9e/measuring_the_best_value_of_histsize/
+SAVEHIST=100000 # https://stackoverflow.com/questions/19454837/bash-or-zsh-histsize-vs-histfilesize
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
