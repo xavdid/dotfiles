@@ -2,16 +2,35 @@
 
 set -euo pipefail
 
-# Downloads a youtube video in mp4 format and puts it on the Desktop
+# Downloads a youtube video in mp4 format and puts it in the archive.
+# Or, with -n/--now, onto the desktop (to be watched now)
 
-# Check if a URL is passed as an argument
 if [ $# -eq 0 ]; then
-  echo "Usage: yt <video_url>"
+  echo "Usage: yt [--now|-n] <video_url>"
   exit 1
 fi
 
-# the -S flag allows changing the sort priority for determining the "best" file to download
-# these values prioritizes "good" extensions and video codes over other factors (filesize or bitrate, etc)
-# basically, gives mp4 w/ h264, if available
-# see also: https://github.com/yt-dlp/yt-dlp/issues/8322
-yt-dlp -S ext,vcodec:h264 -o "$HOME/Desktop/%(title)s.%(ext)s" "$1"
+require-variables DROPBOX || exit 1
+
+# Defaults
+OUTPUT_DIR="$DROPBOX/Archive/Videos/Youtube Backup/%(title)s.%(ext)s"
+VIDEO_URL=""
+
+# Parse arguments
+for arg in "$@"; do
+  case "$arg" in
+    --now|-n)
+      OUTPUT_DIR="$HOME/Desktop/%(title)s.%(ext)s"
+      ;;
+    *)
+      VIDEO_URL="$arg"
+      ;;
+  esac
+done
+
+if [ -z "$VIDEO_URL" ]; then
+  echo "Error: Missing video URL"
+  exit 1
+fi
+
+yt-dlp -S ext,vcodec:h264 -o "$OUTPUT_DIR" "$VIDEO_URL"
