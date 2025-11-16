@@ -79,6 +79,8 @@ ZIP_LOCATIONS = [
     # "Finances", # TODO: organize the files better
 ]
 
+# get the latest file out of this
+MISC_FOLDERS = [Path("/Users/david/Dropbox/Archive/Apps/Soulver")]
 
 ARCHIVE_ROOT = Path("/Users/david/Dropbox/Archive/Backups")
 
@@ -115,6 +117,18 @@ if __name__ == "__main__":
                     copytree(latest_zip, dest / latest_zip.name, dirs_exist_ok=True)
                 else:
                     copy(latest_zip, dest)
-                print("done!")
+                print(" done!")
+
+        for f in MISC_FOLDERS:
+            latest_file = sorted(f.iterdir())[-1]
+            if args.dry_run:
+                print("would copy", latest_file)
+            else:
+                print(f"copying {latest_file}...", end="", flush=True)
+                if latest_file.is_dir():
+                    copytree(latest_file, dest / latest_file.name, dirs_exist_ok=True)
+                else:
+                    copy(latest_file, dest)
+                print(" done!")
 
         (dest / "info.txt").write_text(f"Created via script on {date.today()}\n")
