@@ -10,4 +10,5 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-curl --fail -s "$(pbpaste)" > "./images/$1"; printf "./images/$1" | pbcopy;
+curl --fail -s "$(pbpaste)" > "./$1";
+printf "![](./$1)" | pbcopy;
