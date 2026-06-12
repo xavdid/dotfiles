@@ -5,7 +5,6 @@ cask_args appdir: "/Applications"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-tap "homebrew/cask-drivers" # for wally
 tap "homebrew/cask-fonts"
 
 # general tools
@@ -51,6 +50,7 @@ cask "itsycal"
 cask "karabiner-elements"
 cask "keepingyouawake"
 cask "keka"
+cask "keymapp" # zsa for keyboard
 cask "ngrok"
 cask "obsidian"
 cask "rapidapi"
@@ -61,7 +61,6 @@ cask "slack"
 cask "soulver"
 cask "visual-studio-code"
 cask "zappy"
-cask "zsa-wally"
 
 # might need some of these, depending
 
