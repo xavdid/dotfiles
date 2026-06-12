@@ -6,11 +6,13 @@ Takes the latest of each of my service backups and copies them to my disk image.
 
 import argparse
 import contextlib
+import errno
 import subprocess
 from datetime import date
 from pathlib import Path
+from shutil import copy as copy1
 from shutil import copy2 as copy
-from shutil import copytree
+from shutil import copytree, rmtree
 
 VAULT = Path("/Volumes/Vault")
 
@@ -57,8 +59,15 @@ def mount_vault(manual_password: bool):
         if res.returncode:
             raise RuntimeError(f"failed to mount filesystem: \n\n{res.stderr.decode()}")
 
+    dest = Path("/Volumes/Vault/Service Backups")
+    print("Clearing old backups")
+    rmtree(dest, ignore_errors=True)
+
+    dest.mkdir()
+    (dest / "Finances").mkdir()
+
     try:
-        yield Path("/Volumes/Vault/Service Backups")
+        yield dest
     finally:
         # only detach if the script mounted
         if needs_mounting:
@@ -80,7 +89,7 @@ ZIP_LOCATIONS = [
 ]
 
 # get the latest file out of this
-MISC_FOLDERS = [Path("/Users/david/Dropbox/Archive/Apps/Soulver")]
+MISC_FOLDERS = [Path("/Users/david/Dropbox/Apps/Soulver")]
 
 ARCHIVE_ROOT = Path("/Users/david/Dropbox/Archive/Backups")
 
@@ -128,7 +137,15 @@ if __name__ == "__main__":
                 if latest_file.is_dir():
                     copytree(latest_file, dest / latest_file.name, dirs_exist_ok=True)
                 else:
-                    copy(latest_file, dest)
+                    try:
+                        copy(latest_file, dest)
+                    except OSError as e:
+                        # copying specific files (like the soulver bundle) fails on copying metadata
+                        if e.errno == errno.EINVAL:
+                            copy1(latest_file, dest)
+                        else:
+                            raise
+
                 print(" done!")
 
         (dest / "info.txt").write_text(f"Created via script on {date.today()}\n")
