@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+
+usage() {
+  echo ""
+  echo "Usage: $(basename "$0") input.mp4 123"
+  exit 1
+}
+
+if [ "$#" -ne 2 ]; then
+  echo "Error: Invalid number of arguments."
+  usage
+fi
+
+input="$1"
+seconds="$2"
+
+dir=$(dirname "$input")
+base=$(basename "$input")
+name="${base%.*}"
+ext="${base##*.}"
+output="${dir}/${name}-trimmed.${ext}"
+
+ffmpeg -ss "$seconds" -i "$input" -map 0 -c copy "$output"
