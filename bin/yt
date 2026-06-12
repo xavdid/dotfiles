@@ -33,4 +33,11 @@ if [ -z "$VIDEO_URL" ]; then
   exit 1
 fi
 
-yt-dlp -S ext,vcodec:h264 -o "$OUTPUT_DIR" "$VIDEO_URL"
+# avoid AI upscaling
+# see: https://github.com/yt-dlp/yt-dlp/issues/15325#issuecomment-3652366533
+yt-dlp \
+  -t mp4 \
+  -f 'bv*[format_id!*=-sr]+ba/b[format_id!*=-sr]' \
+  "${COOKIES_ARGS[@]}" \
+  -o "$OUTPUT_DIR" \
+  "$VIDEO_URL"

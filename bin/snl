@@ -13,4 +13,6 @@ if [ $# -eq 0 ]; then
 fi
 
 # strip " - SNL" from the end of the title
-yt-dlp "$1" -S ext,vcodec:h264 --replace-in-metadata title " - SNL" "" --replace-in-metadata title ": " " -- " -o "$DROPBOX/Archive/Videos/SNL/%(title)s.%(ext)s"
+# & avoid AI upscaling
+# see: https://github.com/yt-dlp/yt-dlp/issues/15325#issuecomment-3652366533
+yt-dlp "$1" -t mp4 -f 'bv*[format_id!*=-sr]+ba/b[format_id!*=-sr]' --replace-in-metadata title " - SNL" "" --replace-in-metadata title ": " " -- " -o "$DROPBOX/Archive/Videos/SNL/%(title)s.%(ext)s"
