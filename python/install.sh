@@ -9,4 +9,5 @@
 # fi
 
 # requires pipx 1.6
-pipx install-all pipx.json
+# use mise instead now
+# pipx install-all pipx.json

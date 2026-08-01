@@ -1,21 +1,29 @@
 [tools]
-# always languages
+# languages I always want available
 python = ["3.12"]
 node = "lts"
-go = "1.22"
+go = "1.26"
 
-# global node-based npm tools
-"npm:tldr" = "latest"
+# global tools
+uv = "latest"
+
+# pipx:* uses uvx
+"pipx:datasette" = { version = "latest", uvx_args = "--with datasette-render-html --with datasette-render-markdown --with datasette-render-timestamps" }
+"pipx:backup-airtable" = "latest"
+"pipx:hacker-news-to-sqlite" = "latest"
+"pipx:litecli" = "latest"
+"pipx:ptpython" = "latest"
+"pipx:reddit-user-to-sqlite" = "latest"
+"pipx:sqlite-utils" = "latest"
+"pipx:stackoverflow-to-sqlite" = "latest"
+"pipx:tldr" = "latest"
+
 "npm:trash-cli" = "latest"
 "npm:epub-wordcount" = "latest"
 "npm:will-it-play" = "latest"
 "npm:yarn" = "latest"
-uv = "latest"
-deno = "latest"                 # for yt-dlp
 
-[settings]
-# needed for npm packages
-experimental = true
+deno = "latest" # for yt-dlp
 
 [settings.status]
 missing_tools = "always"

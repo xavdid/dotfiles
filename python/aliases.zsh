@@ -17,7 +17,7 @@ function venv() {
   source ./.venv/bin/activate
 }
 
-alias pir="venv && pip install -r requirements.txt"
-alias pdump="pip freeze > requirements.txt"
+# alias pir="venv && pip install -r requirements.txt"
+# alias pdump="pip freeze > requirements.txt"
 
 # or, just use poetry

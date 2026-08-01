@@ -29,7 +29,6 @@ cask "font-hack-nerd-font"
 
 # programming language providers
 brew "mise"
-brew "pipx"
 
 # apps
 cask "1password"
