@@ -7,16 +7,23 @@ go = "1.26"
 # global tools
 uv = "latest"
 
-# pipx:* uses uvx
-"pipx:datasette" = { version = "latest", uvx_args = "--with datasette-render-html --with datasette-render-markdown --with datasette-render-timestamps" }
-"pipx:backup-airtable" = "latest"
-"pipx:hacker-news-to-sqlite" = "latest"
-"pipx:litecli" = "latest"
-"pipx:ptpython" = "latest"
-"pipx:reddit-user-to-sqlite" = "latest"
-"pipx:sqlite-utils" = "latest"
-"pipx:stackoverflow-to-sqlite" = "latest"
-"pipx:tldr" = "latest"
+# TODO: replace with pypi:* and move things to specific proejcts as needed (e.g datasette doesn't need to be global)
+"pypi:datasette" = { version = "latest", with = [
+  "datasette-render-html",
+  "datasette-render-markdown",
+  "datasette-render-timestamps",
+] }
+"pypi:sqlite-utils" = "latest"
+"pypi:litecli" = "latest"
+"pypi:ptpython" = "latest"
+"pypi:stackoverflow-to-sqlite" = "latest"
+"pypi:tldr" = "latest"
+# my tools
+"pypi:backup-airtable" = "latest"
+"pypi:hacker-news-to-sqlite" = "latest"
+"pypi:reddit-user-to-sqlite" = "latest"
+"pypi:universal-test-runner" = "latest"
+"pypi:potent" = "latest"
 
 "npm:trash-cli" = "latest"
 "npm:epub-wordcount" = "latest"
