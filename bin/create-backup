@@ -148,4 +148,6 @@ if __name__ == "__main__":
 
                 print(" done!")
 
-        (dest / "info.txt").write_text(f"Created via script on {date.today()}\n")
+        (dest / "info.txt").write_text(
+            f"Created via `create-backup` on {date.today()}\n"
+        )
