@@ -4,7 +4,7 @@ set -euo pipefail
 
 # run each backup script in order
 
-backup-airtable
+backup-airtable-wrapper
 backup-github
 backup-things
 backup-obsidian
