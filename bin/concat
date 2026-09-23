@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 0 ]]; then
+    echo "Usage: $(basename "$0")" >&2
+    echo "  Concatenates NNN.mp4 parts in the current directory into" >&2
+    echo "  <current dir name>.mp4" >&2
+    exit 1
+fi
+
+output_file="$(basename "$PWD").mp4"
+output="./$output_file"
+
+if [[ -f "$output" ]]; then
+    echo "'$output' already exists — nothing to do. Delete it first if you want to re-run."
+    exit 0
+fi
+
+# Every file in the current directory must look like a zero-padded part
+# (001.mp4, 002.mp4, ...). Anything else short-circuits the whole run,
+# since a stray file usually means something's off and ordering can't
+# be trusted. Glob expansion sorts alphabetically by default, which
+# lines up with numeric order here since the names are zero-padded.
+shopt -s nullglob
+files=()
+bad_files=()
+for path in ./*; do
+    [[ -f "$path" ]] || continue
+    base=$(basename "$path")
+    if [[ "$base" =~ ^[0-9]{3}\.mp4$ ]]; then
+        files+=("$base")
+    else
+        bad_files+=("$base")
+    fi
+done
+shopt -u nullglob
+
+if [[ ${#bad_files[@]} -gt 0 ]]; then
+    echo "Error: current directory contains file(s) that don't match the NNN.mp4 pattern:" >&2
+    printf '  %s\n' "${bad_files[@]}" >&2
+    exit 1
+fi
+
+if [[ ${#files[@]} -le 1 ]]; then
+    echo "Error: found ${#files[@]} part file(s); need at least 2 to concatenate." >&2
+    exit 1
+fi
+
+list_file="$(mktemp "./.concat_list.XXXXXX")"
+trap 'rm -f "$list_file"' EXIT
+
+for f in "${files[@]}"; do
+    # escape any single quotes for ffmpeg's concat list format
+    escaped=${f//\'/\'\\\'\'}
+    echo "file '$escaped'" >> "$list_file"
+done
+
+echo "Concatenating ${#files[@]} files in order:"
+printf '  %s\n' "${files[@]}"
+
+ffmpeg -hide_banner -loglevel error -f concat -safe 0 -i "$list_file" -c copy "$output"
+
+echo "Done! Saved into '$output'"

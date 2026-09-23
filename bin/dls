@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $(basename "$0") <stream_url>" >&2
+    echo "  Downloads into the current directory as 001.mp4, 002.mp4, ..." >&2
+    exit 1
+}
+
+if [[ $# -ne 1 ]]; then
+    usage
+fi
+
+url="$1"
+
+if [[ -z "$url" ]]; then
+    echo "Error: stream URL cannot be empty" >&2
+    exit 1
+fi
+
+# If a previous run got interrupted, yt-dlp leaves behind a NNN.*.part
+# file. Prefer resuming that instead of starting a new numbered download.
+shopt -s nullglob
+resume_candidates=([0-9][0-9][0-9].*.part)
+shopt -u nullglob
+
+if [[ ${#resume_candidates[@]} -gt 1 ]]; then
+    echo "Error: multiple incomplete .part files found; resolve manually before continuing:" >&2
+    printf '  %s\n' "${resume_candidates[@]}" >&2
+    exit 1
+elif [[ ${#resume_candidates[@]} -eq 1 ]]; then
+    part_file="${resume_candidates[0]}"
+    base="${part_file%.part}"
+    padded="${base%%.*}"
+    echo "Found incomplete download '$part_file' - resuming ${padded}.*"
+else
+    # No .part file to resume, so find the highest existing NNN.<ext>
+    # file and use the next number. Matches on the numeric prefix only,
+    # so it doesn't care what extension previous parts ended up with.
+    last=0
+    shopt -s nullglob
+    for f in [0-9][0-9][0-9].*; do
+        b="${f%%.*}"
+        if [[ "$b" =~ ^[0-9]{3}$ ]]; then
+            num=$((10#$b))
+            (( num > last )) && last=$num
+        fi
+    done
+    shopt -u nullglob
+
+    next=$((last + 1))
+    padded=$(printf '%03d' "$next")
+fi
+
+yt-dlp -S "res:720" -o "${padded}.%(ext)s" "$url"
