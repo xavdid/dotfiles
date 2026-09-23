@@ -24,6 +24,13 @@ if (!process.env.DROPBOX) {
   process.exit(1);
 }
 
+if (!process.env.GBOOKS_API_KEY) {
+  console.error(
+    `ERR - command requires the "GBOOKS_API_KEY" env variable to be set`
+  );
+  process.exit(1);
+}
+
 const { countWords } = requireGlobal("epub-wordcount");
 const got = requireGlobal("got");
 const config = requireGlobal("@brownman/config");
@@ -57,10 +64,11 @@ const sendData = async (data) => {
 const fetchGBooksInfo = async (fileName) => {
   let data;
   if (fileName) {
+    // https://console.cloud.google.com/apis/credentials/key/e0740a1c-0201-4c82-be05-2550702fa3a6?project=alpine-ship-631
     data = await got(
       `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
         fileName
-      )}`
+      )}&key=${process.env.GBOOKS_API_KEY}`
     ).json();
   } else {
     let { idOrUrl } = await inquirer.prompt([
@@ -339,12 +347,12 @@ if (program.args[0] === "libby") {
 (inputPath === "libby"
   ? processOdm()
   : extname(inputPath) === ".epub"
-  ? processEpub(inputPath, { shouldMove: program.opts().move })
-  : extname(inputPath) === ".aax" || extname(inputPath) === ".m4b"
-  ? processAudible(inputPath)
-  : (() => {
-      throw new Error(`unknown operation, got ${inputPath}`);
-    })()
+    ? processEpub(inputPath, { shouldMove: program.opts().move })
+    : extname(inputPath) === ".aax" || extname(inputPath) === ".m4b"
+      ? processAudible(inputPath)
+      : (() => {
+          throw new Error(`unknown operation, got ${inputPath}`);
+        })()
 ).catch((e) => {
   console.error(e);
   process.exit(1);
