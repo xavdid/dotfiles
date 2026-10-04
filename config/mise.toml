@@ -1,6 +1,6 @@
 [tools]
 # languages I always want available
-python = ["3.12"]
+python = "3.14"
 node = "lts"
 go = "1.26"
 
