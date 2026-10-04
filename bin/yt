@@ -52,6 +52,6 @@ fi
 yt-dlp \
   -t mp4 \
   -f 'bv*[format_id!*=-sr]+ba/b[format_id!*=-sr]' \
-  "${COOKIES_ARGS[@]}" \
+  ${COOKIES_ARGS[@]+"${COOKIES_ARGS[@]}"} \
   -o "$OUTPUT_DIR" \
   "$VIDEO_URL"
