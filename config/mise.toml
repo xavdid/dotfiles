@@ -6,14 +6,6 @@ go = "1.26"
 
 # global tools
 uv = "latest"
-
-# TODO: replace with pypi:* and move things to specific proejcts as needed (e.g datasette doesn't need to be global)
-"pypi:datasette" = { version = "latest", with = [
-  "datasette-render-html",
-  "datasette-render-markdown",
-  "datasette-render-timestamps",
-] }
-"pypi:sqlite-utils" = "latest"
 "pypi:litecli" = "latest"
 "pypi:ptpython" = "latest"
 "pypi:stackoverflow-to-sqlite" = "latest"
